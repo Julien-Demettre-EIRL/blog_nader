@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/index.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+	<link rel="stylesheet" media="only screen and (max-width:700px)" href="./css/index.mobile.css">
+	<link href="https://fonts.googleapis.com/css?family=Long+Cang|Montserrat:300,400,700&display=swap" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/83f4286022.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Staatliches&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="./owlcarousel/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="./owlcarousel/assets/owl.theme.default.min.css">
+	
+	<title>Blog : Tous les articles</title>
+</head>
+
+<body>
+
+	<div class="container1">
+
+		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+
+
+		<section>
+		<div class="owl-carousel">
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+  <div> Your Content </div>
+</div>
+
+		</section>
+
+
+		<section class="showcase">
+
+
+			<?php foreach ($postsGauche as $post): ?>
+				<article>
+					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+
+						<?php if (!is_null($post['imageFileName'])): ?>
+							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>"
+							alt="<?=htmlspecialchars($post['title'])?>">
+						<?php endif;?>
+						<h3><?=htmlspecialchars($post['title'])?></h3>
+
+						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+								<?=htmlspecialchars($post['writerUsername'])?></a></p>
+						<p class="text-hint">le <?=$post['publicationDate']?>
+
+							<i class="fas fa-star mx-1"></i>
+						</p>
+				</article>
+			<?php endforeach?>
+
+
+
+
+
+			<?php /*var_dump($postsCentre);*/foreach ($postsCentre as $post): ?>
+				<article class="article-small">
+					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+
+						<?php if (!is_null($post['imageFileName'])): ?>
+							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+						<?php endif;?>
+						<h3><?=htmlspecialchars($post['title'])?></h3>
+
+						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+								<?=htmlspecialchars($post['writerUsername'])?></a></p>
+								<br>
+						<p class="text-hint">le <?=$post['publicationDate']?>
+							<i class="fas fa-star mx-1"></i>
+
+						</p>
+				</article>
+			<?php endforeach?>
+
+
+
+			<?php foreach ($postsDroite as $post): ?>
+				<article>
+					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+						<?php if (!is_null($post['imageFileName'])): ?>
+							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+						<?php endif;?>
+						<h3><?=htmlspecialchars($post['title'])?></h3>
+
+						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+								<?=htmlspecialchars($post['writerUsername'])?></a></p>
+						<p class="text-hint">le <?=$post['publicationDate']?>
+
+							<i class="fas fa-star mx-1"></i>
+						</p>
+				</article>
+			<?php endforeach?>
+
+
+		</section>
+
+
+		<section class="ads">
+			<img src="img/ads.png" alt="ads" />
+			<h1>Espace publicitaire</h1>
+			<p>
+				Encart publicitaire dedié à la promotion des partenariats, sponsors et Medias institutionnels
+			</p>
+			<form action="#">
+				<input placeholder="Adresse Email" type="text" />
+				<button class="btn btn-dark">Inscription</button>
+			</form>
+		</section>
+
+
+
+		<!-- <section class="content">
+			<div class="articles">
+				<h2 class="underline">Communiqués</h2>
+
+
+				<?php foreach ($posts as $post): ?>
+					<article>
+						<a href="../controller/post.php?id=<?=intval($post['id'])?>">
+							<h3 class="underline"><?=htmlspecialchars($post['title'])?></h3>
+						</a>
+
+						<?php if (!is_null($post['imageFileName'])): ?>
+							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+						<?php endif;?>
+						<p class="article-author" class="text-hint">Rédigé par <a href="../controller/writer.php?id=<?=intval($post['writerId'])?>">
+								<?=htmlspecialchars($post['writerUsername'])?></a></br>Lire la suite</p>
+						<p class="text-hint"> le <?=$post['publicationDate']?>
+							<i class="fas fa-star mx-1"></i>
+						</p>
+					</article>
+				<?php endforeach?>
+
+			</div>
+
+			<div class="popular">
+				<h2 class="underline">Populaires</h2>
+				<ul>
+					<li>
+
+
+						<?php foreach ($postsPopulaire as $post): ?>
+							<div>
+								<div>01</div>
+								<a href="../controller/post.php?id=<?=intval($post['id'])?>">
+									<h3><?=htmlspecialchars($post['title'])?></h3>
+								</a>
+								<?php if (!is_null($post['imageFileName'])): ?>
+									<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+								<?php endif;?>
+								<p class="article-author">
+									Rédigé par <a href="../controller/writer.php?id=<?=intval($post['writerId'])?>">
+										<?=htmlspecialchars($post['writerUsername'])?></a></br>Lire la suite</p>
+								<p class="text-hint">le <?=$post['publicationDate']?>
+									<i class="fas fa-star mx-1"></i>
+								</p>
+							</div>
+						<?php endforeach?>
+
+					</li>
+
+
+
+
+
+
+ -->
+
+		<!--
+            <li>
+              <div>02</div>
+              <div>
+                <h3>Lorem ipsum dolor sit amet.</h3>
+                <p class="article-author">Lorem, ipsum</p>
+                <p class="text-hint">
+                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div>03</div>
+              <div>
+                <h3>Lorem ipsum dolor sit amet.</h3>
+                <p class="article-author">Lorem, ipsum</p>
+                <p class="text-hint">
+                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div>04</div>
+              <div>
+                <h3>Lorem ipsum dolor sit amet.</h3>
+                <p class="article-author">Lorem, ipsum</p>
+                <p class="text-hint">
+                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
+                </p>
+              </div>
+            </li> -->
+		<!--
+				</ul>
+			</div>
+		</section> -->
+
+
+
+	</div>
+
+	<footer>
+		<a href="https://twitter.com/IsmailOguelleh">
+			<i class="fab fa-twitter"></i>
+			<span class="not-important">Twitter</span>
+		</a>
+		<a href="#">
+			<i class="fab fa-instagram"></i>
+			<span class="not-important">Instagram</span>
+		</a>
+		<a href="#">
+			<i class="fab fa-linkedin"></i>
+			<span class="not-important">linkedin</span>
+		</a>
+		<a href="https://www.facebook.com/PAGEOFFICIELLEIOG">
+			<i class="fab fa-facebook"></i>
+			<span class="not-important">Facebook</span>
+		</a>
+
+		<a href="">
+			<i class="fab fa-youtube"></i>
+			<span class="not-important">YouTube</span>
+		</a>
+		<span>2021 Service Presse Présidence © Tous droits réservés</span>
+	</footer>
+	<script
+			  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+			  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+			  crossorigin="anonymous"></script>
+	<script src="./owlcarousel/owl.carousel.min.js"></script>
+	<script>
+		$(document).ready(function(){
+  			$(".owl-carousel").owlCarousel();
+		});
+	</script>
+</body>
+
+</html>

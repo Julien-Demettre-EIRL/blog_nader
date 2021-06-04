@@ -1,0 +1,15 @@
+
+header {
+    flex-direction: column;
+  }
+  
+  header ul {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  header ul li {
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px dotted #ddd;
+  }

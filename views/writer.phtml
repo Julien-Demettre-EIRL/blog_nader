@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Blog : Articles rédigés par <?=htmlspecialchars($writer['username'])?></title>
+	</head>
+	<body>
+		<h1>Hello </h1>
+		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+		<h1>Articles rédigés par <?=htmlspecialchars($writer['username'])?></h1>
+		<?php foreach ($posts as $post): ?>
+
+
+			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+				<h3><?=htmlspecialchars($post['title'])?></h3>
+			</a>
+			<?php if (!is_null($post['imageFileName'])): ?>
+				<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+			<?php endif;?>
+			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?= intval($post['writerId']) ?>"><?=htmlspecialchars($post['writerUsername'])?></a>, le <?=$post['publicationDate']?></p>
+		<?php endforeach;?>
+	</body>
+
+</html>

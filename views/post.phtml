@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="../css/index.css"> -->
+	<script src="https://kit.fontawesome.com/83f4286022.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Staatliches&display=swap" rel="stylesheet" />
+
+	<title>Blog : <?=htmlspecialchars($post['title'])?></title>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+		<a href="./index.php">Retour à la page d'accueil</a>
+		</br></br>
+
+			<section>
+			<!--	<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">-->
+
+					<?php if (!is_null($post['imageFileName'])): ?>
+						<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+					<?php endif;?>
+
+
+					<h1><?=htmlspecialchars($post['title'])?></h1>
+
+					<?php if (!is_null($post['imageFileName'])): ?>
+						<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+					<?php endif;?>
+
+					<p><?=htmlspecialchars($post['content'])?></p>
+
+					<p>Post en position : <?=htmlspecialchars($post['position'])?></p>
+
+					<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+							<?=htmlspecialchars($post['writerUsername'])?></a></p>
+					<p class="text-hint">le <?=$post['publicationDate']?></p>
+
+			</section>
+
+
+		</br></br>
+
+		<?php
+if (isset($success)) {
+    echo $success;
+}
+
+if (!empty($errors)): ?>
+			<?php foreach ($errors as $error): ?>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="alert alert-danger">
+							<?=$error?>
+						</div>
+					</div>
+				</div>
+			<?php endforeach;?>
+		<?php endif;?>
+
+		<div class="row">
+			<div class="col-md-6">
+				<form action="<?=$routes["postGetAjout"]['lien']?><?=$id?>" method="post">
+					<input type="hidden" name="postId" value="<?=$id?>">
+					<p><label for="username">Email :</label></br>
+						<input type="text" name="author" id="username" placeholder="Votre email" value="<?php if (isset($author)) {
+    echo $author;
+}
+?>" class="form-control" />
+					</p>
+					<p><label for="content">Commentaire :</label></br>
+
+						<textarea name="content" placeholder="Votre commentaire" id="content" cols="30" rows="5" class="form-control">
+			<?php if (isset($comment)) {
+    echo $comment;
+}
+?></textarea>
+					</p>
+					<button type="submit" value="1" class="btn btn-success">Envoyer</button>
+				</form>
+			</div>
+		</div>
+
+
+		<h2>Commentaires</h2>
+
+		<?php foreach ($comment as $com): ?>
+			<h3><?=$com->username?></h3>
+			<p><?=$com->content?></p>
+		<?php endforeach;?>
+
+		</br></br>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+Création d'un blog communautaire :
+--------------------------------------------------------------------------------
+
+Un formulaire d'inscription permettra de devenir rédacteur.
+Chaque rédacteur devra alors s'identifier, via son pseudo et son mot de passe,
+avant de pouvoir rédiger, modifier ou supprimer des articles.
+Bien entendu, un rédacteur ne devra pouvoir modifier et supprimer que les
+articles qu'il aura lui-même rédigés.
+Le rédacteur devra pouvoir se déconnecter.
+
+La page d'accueil listera tous les articles par ordre antéchronologique.
+Chaque article présentera, sur la page d'accueil, les informations suivantes :
+	- Un titre ;
+	- Une image (le fichier sera transmis lors de la rédaction dudit article) ;
+	- Une date de publication ;
+	- Le pseudo du rédacteur l'ayant rédigé.
+Le titre et l'image seront cliquables et permettront d'accéder à la page
+détaillée dudit article.
+Le pseudo du rédacteur sera également cliquable et permettra, quant à lui,
+d'accéder à tous les articles dudit rédacteur.
+
+La page détaillée d'un article affichera le titre de l'article, l'image, la date
+de publication, le pseudo du rédacteur (toujours cliquable), mais aussi le
+texte dudit article, les commentaires qui lui sont liés et un formulaire
+permettant de rédiger un commentaire.
+
+Les commentaires pourront être rédigés par les visiteurs (sans
+identification).
+Seuls un pseudo et un contenu seront demandés.

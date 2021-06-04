@@ -1,0 +1,27 @@
+
+
+	<header>
+
+		<a href="/">
+
+			<img src="../img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:130px">
+
+		</a>
+
+		<?php if (!array_key_exists('userId', $_SESSION)): ?>
+			<ul>
+
+				<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
+				<li><a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light">Connexion</button></a></li>
+				<!-- <li><a href="<?=$routes["userAjout"]['lien']?>" button class="btn btn-light">Inscription</button></a></li> -->
+
+			</ul>
+		<?php else: ?>
+			<ul>
+				<li><a href="<?=$routes["dashboard"]['lien']?>">Tableau de bord</a></li>
+				<li><a href="<?=$routes["userDeco"]['lien']?>">Déconnexion</a></li>
+			</ul>
+		<?php endif;?>
+
+	</header>
+

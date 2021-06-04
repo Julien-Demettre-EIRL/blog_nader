@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<title>Blog : Identification</title>
+	<link rel="stylesheet" href="../css/connexion.css">
+</head>
+
+<body>
+
+
+
+
+
+
+	<div class="login-page">
+		<div class="form">
+			<form action="<?=$routes["validInstall"]['lien']?>" method="post">
+				<input type="text" name="serveur" placeholder="Serveur" required autocomplete="off">
+				<input type="text" name="nomBdd" placeholder="Nom BDD" required autocomplete="off">
+				<input type="text" name="port" placeholder="Port" required autocomplete="off">
+				<input type="text" name="utilisateur" placeholder="Utilisateur BDD" required autocomplete="off">
+				<input type="text" name="mdp" placeholder="Mot de passe" required autocomplete="off">
+				<button type="submit">Connexion</button>
+			</form>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

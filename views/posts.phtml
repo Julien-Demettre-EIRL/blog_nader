@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="../css/index.css"> -->
+	<script src="https://kit.fontawesome.com/83f4286022.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Staatliches&display=swap" rel="stylesheet" />
+
+	<title>Blog : <?= htmlspecialchars($post['title']) ?></title>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<?php require dirname(__FILE__) .'/../views/navigation.phtml' ?>
+		<a href="./index.php">Retour à la page d'accueil</a>
+		</br></br>
+<?php foreach ($posts as $post) { ?>
+
+			<section>
+				<a href="<?=$routes["postGetAjout"]['lien']?><?= intval($post['id']) ?>">
+
+					<?php if (!is_null($post['imageFileName'])) : ?>
+						<img src="../uploads/<?= htmlspecialchars($post['imageFileName']) ?>" alt="<?= htmlspecialchars($post['title']) ?>">
+					<?php endif; ?>
+
+
+					<h1><?= htmlspecialchars($post['title']) ?></h1>
+
+					<?php if (!is_null($post['imageFileName'])) : ?>
+						<img src="../uploads/<?= htmlspecialchars($post['imageFileName']) ?>" alt="<?= htmlspecialchars($post['title']) ?>">
+					<?php endif; ?>
+
+					<p><?= htmlspecialchars($post['content']) ?></p>
+					
+					<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?= intval($post['writerId']) ?>">
+							<?= htmlspecialchars($post['writerUsername']) ?></a></p>
+					<p class="text-hint">le <?= $post['publicationDate'] ?></p>
+					
+			</section>
+		
+<?php } ?>
+		</br></br>
+
+		
+		
+		</br></br>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+/* reset */
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+    background: #eee;
+    color: #333;
+  }
+
+  
+
+  .btn {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 0;
+    transition: all 0.2s;
+  }
+  
+  .btn-light {
+    background: white;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
+  
+  .btn-light:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+.vp-container {
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+} */
+/* 
+header {
+    padding: 1rem 2rem;
+    background: #333;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    line-height: 1.8rem;
+  }
+  
+  .vp-logo {
+    margin-bottom: 0;
+    font-family: "Long Cang", cursive;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .vp-logo img {
+   
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .vp-logo a {
+    font-size: 3rem;
+    font-weight: 300;
+  } */
+
+/* 
+header ul {
+    display: flex;
+    flex-flow: row nowrap;
+    list-style: none;
+  }
+  
+  header ul li {
+    padding: 1rem;
+  }
+  
+  header ul li a:hover {
+    color: #f1c40f;
+  }
+  
+  header a {
+    color: white;
+  } */
+
+
+
+
+ 
+  /* header */
+
+header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-items: center start;
+  line-height: 3.5rem;
+  margin: 0.5rem auto;
+}
+
+header .logo {
+  font-size: 3rem;
+  font-family: "Staatliches", cursive;
+}
+
+header a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+header ul {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+header ul li {
+  padding: 1rem;
+}

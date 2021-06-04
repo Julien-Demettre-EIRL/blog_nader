@@ -1,0 +1,11 @@
+{
+    "name": "jdedev/service_presse",
+    "description": "Blog du service de presse de la pr\u0000sidence de Djibouti",
+    "authors": [
+        {
+            "name": "JdeDev",
+            "email": "julien@jdedev.fr"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../css/Form_ecrire_com.css">
+	<title>Blog : Tableau de bord</title>
+</head>
+
+<body>
+
+
+
+
+
+<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+
+
+
+
+
+	<section class="container">
+
+
+
+	<article class="carrousel">
+
+		<div class="col-lg-4 bg-dark rounded px-4">
+			<h3 class="text-center text-light p-1"> Selectionner une image pour votre carousel </h3>
+			<form action="dashboard.php" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" name="image" class="form-control p-1" required>
+				</div>
+				<div class="class-form-group">
+					<input type="submit" name="upload" class="btn btn-warning btn-block" value="Upload Image">
+				</div>
+				<div class="form-group">
+					<h5 class="text-center text-light"><?=$msg;?></h5>
+				</div>
+			</form>
+
+		</div>
+	</article>
+
+		<article class="content">
+			<div class="block p-20 form-container">
+
+				<h1>Ecrire un communiqué</h1>
+
+				<form action="<?=$routes["postAjoutArticle"]['lien']?>" method="post" enctype="multipart/form-data">
+
+					<div class="form-control">
+						<label for="title">Titre</label>
+						<input type="text" name="title" placeholder="Titre" required>
+						<!-- <p class="text-error"></p> -->
+					</div>
+
+					<div class="form-control">
+						<label for="image">Image</label>
+						<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+						<input type="file" name="image" accept="image/png, image/jpeg">
+						<!-- <p class="text-error"></p> -->
+					</div>
+
+					<div class="form-control">
+						<label for="category">Sélectionner l'emplacement du communiqué</label>
+						<select name="position" id="category">
+							<option selected>Choisir la position</option>
+							<option value="postGauche">Gauche</option>
+							<option value="postCentre">Centre</option>
+							<option value="postDroite">Droite</option>
+							<!-- <p class="text-error"></p> -->
+						</select>
+					</div>
+					<div class="form-control">
+						<label for="content">Contenu</label>
+						<textarea name="content" placeholder="Contenu" required></textarea>
+						<!-- <p class="text-error"></p> -->
+					</div>
+					<div class="form-actions">
+						<button class="btn btn-secondary" type="button">Annuler</button>
+						<button class="btn btn-primary" type="submit">Publier</button>
+					</div>
+				</form>
+			</div>
+		</article>
+
+
+
+
+	</section>
+
+
+</body>
+
+</html>

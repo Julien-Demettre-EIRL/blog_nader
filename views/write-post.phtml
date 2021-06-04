@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../css/Form_ecrire_com.css">
+	<title>Service Presse Présidence</title>
+</head>
+
+<body>
+	<?php /* require '../views/navigation.phtml' */?>
+	<!-- <h1>Publication d'un communiqué</h1>
+	<form action="../controller/write-post.php" method="post" enctype="multipart/form-data">
+		<input type="text" name="title" placeholder="Titre" required>
+		<textarea name="content" placeholder="Contenu" required></textarea>
+
+		<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+		<input type="file" name="image" accept="image/png, image/jpeg">
+
+		<select name="position" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"> -->
+			<!-- mettre un name -->
+			<!-- <option selected>Selectionner l'emplacement de l'article</option>
+			<option value="postGauche">à Gauche</option>
+			<option value="postCentre">au Centre</option>
+			<option value="postDroite">à Droite</option>
+		</select>
+
+		<button type="submit">Publier</button>
+	</form> -->
+
+
+	<div class="container">
+		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+		<div class="content">
+			<div class="block p-20 form-container">
+
+				<h1>Ecrire un communiqué</h1>
+
+				<form action="<?=$routes["postAjoutArticle"]['lien']?>" method="post" enctype="multipart/form-data">
+
+					<div class="form-control">
+						<label for="title">Titre</label>
+						<input type="text" name="title" placeholder="Titre" required>
+						<!-- <p class="text-error"></p> -->
+					</div>
+
+					<div class="form-control">
+						<label for="image">Image</label>
+						<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+						<input type="file" name="image" accept="image/png, image/jpeg">
+						<!-- <p class="text-error"></p> -->
+					</div>
+
+					<div class="form-control">
+						<label for="category" >Sélectionner l'emplacement du communiqué</label>
+						<select name="position"  id="category">
+						<option selected>Choisir la position</option>
+							<option value="postGauche">Gauche</option>
+							<option value="postCentre">Centre</option>
+							<option value="postDroite">Droite</option>
+							<!-- <p class="text-error"></p> -->
+						</select>
+					</div>
+					<div class="form-control">
+						<label for="content">Contenu</label>
+						<textarea name="content" placeholder="Contenu" required></textarea>
+						<!-- <p class="text-error"></p> -->
+					</div>
+					<div class="form-actions">
+						<button class="btn btn-secondary" type="button">Annuler</button>
+						<button class="btn btn-primary" type="submit">Publier</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+
+</html>
