@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/index.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-	<link rel="stylesheet" media="only screen and (max-width:700px)" href="./css/index.mobile.css">
-	<link href="https://fonts.googleapis.com/css?family=Long+Cang|Montserrat:300,400,700&display=swap" rel="stylesheet" />
-	<script src="https://kit.fontawesome.com/83f4286022.js" crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Staatliches&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" href="./owlcarousel/assets/owl.carousel.min.css">
-	<link rel="stylesheet" href="./owlcarousel/assets/owl.theme.default.min.css">
-	
-	<title>Blog : Tous les articles</title>
-</head>
-
-<body>
+<?php require dirname(__FILE__) . '/../views/head.phtml'?>
 
 	<div class="container1">
 
@@ -216,40 +198,4 @@
 
 	</div>
 
-	<footer>
-		<a href="https://twitter.com/IsmailOguelleh">
-			<i class="fab fa-twitter"></i>
-			<span class="not-important">Twitter</span>
-		</a>
-		<a href="#">
-			<i class="fab fa-instagram"></i>
-			<span class="not-important">Instagram</span>
-		</a>
-		<a href="#">
-			<i class="fab fa-linkedin"></i>
-			<span class="not-important">linkedin</span>
-		</a>
-		<a href="https://www.facebook.com/PAGEOFFICIELLEIOG">
-			<i class="fab fa-facebook"></i>
-			<span class="not-important">Facebook</span>
-		</a>
-
-		<a href="">
-			<i class="fab fa-youtube"></i>
-			<span class="not-important">YouTube</span>
-		</a>
-		<span>2021 Service Presse Présidence © Tous droits réservés</span>
-	</footer>
-	<script
-			  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-			  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-			  crossorigin="anonymous"></script>
-	<script src="./owlcarousel/owl.carousel.min.js"></script>
-	<script>
-		$(document).ready(function(){
-  			$(".owl-carousel").owlCarousel();
-		});
-	</script>
-</body>
-
-</html>
+	<?php require dirname(__FILE__) . '/../views/foot.phtml'?>

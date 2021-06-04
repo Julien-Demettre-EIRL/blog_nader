@@ -64,6 +64,33 @@ $routes["dashboard"] = [
     "funcController"=>"afficheDashboard",
     "param"=>false
 ];
+$routes["dashboardCarrousel"] = [
+    "lien"=>"./index.php?controller=dashboard&action=carrousel",
+    "controller"=>"dashboard",
+    "action"=>"carrousel",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"afficheDashCarrousel",
+    "param"=>false
+];
+$routes["dashboardComment"] = [
+    "lien"=>"./index.php?controller=dashboard&action=comment",
+    "controller"=>"dashboard",
+    "action"=>"comment",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"afficheDashComment",
+    "param"=>false
+];
+$routes["dashboardUser"] = [
+    "lien"=>"./index.php?controller=dashboard&action=user",
+    "controller"=>"dashboard",
+    "action"=>"user",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"afficheDashUser",
+    "param"=>false
+];
 $routes["userCon"] = [
     "lien"=>"./index.php?controller=user&action=connect",
     "controller"=>"user",

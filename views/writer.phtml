@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title>Blog : Articles rédigés par <?=htmlspecialchars($writer['username'])?></title>
-	</head>
-	<body>
-		<h1>Hello </h1>
+<?php require dirname(__FILE__) . '/../views/head.phtml'?>
+<div class="container-fluid">
 		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 		<h1>Articles rédigés par <?=htmlspecialchars($writer['username'])?></h1>
 		<?php foreach ($posts as $post): ?>
@@ -19,6 +13,5 @@
 			<?php endif;?>
 			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?= intval($post['writerId']) ?>"><?=htmlspecialchars($post['writerUsername'])?></a>, le <?=$post['publicationDate']?></p>
 		<?php endforeach;?>
-	</body>
-
-</html>
+		</div>
+		<?php require dirname(__FILE__) . '/../views/foot.phtml'?>
