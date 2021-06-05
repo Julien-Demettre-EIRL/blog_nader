@@ -9,7 +9,7 @@
 				<h3><?=htmlspecialchars($post['title'])?></h3>
 			</a>
 			<?php if (!is_null($post['imageFileName'])): ?>
-				<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 			<?php endif;?>
 			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?= intval($post['writerId']) ?>"><?=htmlspecialchars($post['writerUsername'])?></a>, le <?=$post['publicationDate']?></p>
 		<?php endforeach;?>

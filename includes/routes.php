@@ -22,9 +22,9 @@ $routes["postGetArticle"] = [
 $routes["postSupArticle"] = [
     "lien"=>"./index.php?controller=post&action=supp&id=",
     "controller"=>"post",
-    "action"=>"suppArticle",
-    "fichierController"=>'./controller/posts.controller.php',
-    "classController"=>"PostsController",
+    "action"=>"supp",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
     "funcController"=>"delArticle",
     "param"=>true
 ];
@@ -32,8 +32,8 @@ $routes["postEditArticle"] = [
     "lien"=>"./index.php?controller=post&action=edit&id=",
     "controller"=>"post",
     "action"=>"edit",
-    "fichierController"=>'./controller/posts.controller.php',
-    "classController"=>"PostsController",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
     "funcController"=>"editArticle",
     "param"=>true
 ];
@@ -41,8 +41,8 @@ $routes["postAjoutArticle"] = [
     "lien"=>"./index.php?controller=post&action=ajout",
     "controller"=>"post",
     "action"=>"ajout",
-    "fichierController"=>'./controller/posts.controller.php',
-    "classController"=>"PostsController",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
     "funcController"=>"ajoutArticle",
     "param"=>false
 ];
@@ -71,6 +71,24 @@ $routes["dashboardCarrousel"] = [
     "fichierController"=>'./controller/dashboard.controller.php',
     "classController"=>"DashboardController",
     "funcController"=>"afficheDashCarrousel",
+    "param"=>false
+];
+$routes["postSupImgCarrousel"] = [
+    "lien"=>"./index.php?controller=post&action=suppImg&id=",
+    "controller"=>"post",
+    "action"=>"suppImg",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"delImgCar",
+    "param"=>true
+];
+$routes["postAjoutImgCarrousel"] = [
+    "lien"=>"./index.php?controller=post&action=ajoutImg",
+    "controller"=>"post",
+    "action"=>"ajoutImg",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"ajoutImgCar",
     "param"=>false
 ];
 $routes["dashboardComment"] = [

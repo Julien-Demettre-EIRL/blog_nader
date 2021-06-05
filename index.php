@@ -42,36 +42,3 @@ if(!$routeTrouve)
 {
     echo 'route non géré';
 }
-/*if (!isset($_GET["controller"]) || $_GET["controller"] == "post") {
-    if (!isset($_GET["action"]) || $_GET["action"] == "getArticles" || $_GET["action"] == "") {
-        require_once './controller/posts.controller.php';
-        $postController = new PostsController();
-        $postController->getArticles();
-    } elseif ($_GET["action"] == "getAjoutArticle") {
-        if (!empty($_GET["id"])) {
-            require_once './controller/posts.controller.php';
-            $postController = new PostsController();
-            $postController->getAjoutArticle((int) $_GET["id"]);
-        }
-    } elseif ($_GET["action"] == "suppArticle") {
-        if (!empty($_GET["id"])) {
-            require_once './controller/posts.controller.php';
-            $postController = new PostsController();
-            $postController->delArticle((int) $_GET["id"]);
-        }
-    } else {
-        echo 'route inexistante';
-    }
-
-} elseif ($_GET["controller"] == "user") {
-    if (!isset($_GET["action"]) || $_GET["action"] == "connect" || $_GET["action"] == "") {
-        echo 'route non géré';
-    } else {
-        echo 'route inexistante';
-    }
-} elseif ($_GET["controller"] == "dashboard") {
-    echo 'route non géré';
-} else {
-    echo 'route inexistante';
-}
-*/

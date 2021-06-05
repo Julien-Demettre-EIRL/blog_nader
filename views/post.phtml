@@ -3,21 +3,17 @@
 	<div class="container-fluid">
 
 		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
-		<a href="./index.php">Retour à la page d'accueil</a>
 		</br></br>
 
 			<section>
 			<!--	<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">-->
 
-					<?php if (!is_null($post['imageFileName'])): ?>
-						<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-					<?php endif;?>
-
+				
 
 					<h1><?=htmlspecialchars($post['title'])?></h1>
 
 					<?php if (!is_null($post['imageFileName'])): ?>
-						<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+						<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 					<?php endif;?>
 
 					<p><?=htmlspecialchars($post['content'])?></p>
@@ -76,7 +72,7 @@ if (!empty($errors)): ?>
 
 		<h2>Commentaires</h2>
 
-		<?php foreach ($comment as $com): ?>
+		<?php foreach ($comments as $com): ?>
 			<h3><?=$com->username?></h3>
 			<p><?=$com->content?></p>
 		<?php endforeach;?>

@@ -12,12 +12,14 @@
 			<ul>
 
 				<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
+				<li><a href="<?=$routes["postGetArticle"]['lien']?>" class="btn btn-light">Accueil</a></li>
 				<li><a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light">Connexion</button></a></li>
 				<li><a href="<?=$routes["userAjout"]['lien']?>" button class="btn btn-light">Inscription</button></a></li>
 
 			</ul>
 		<?php else: ?>
 			<ul>
+				<li><a href="<?=$routes["postGetArticle"]['lien']?>">Accueil</a></li>
 				<li><a href="<?=$routes["dashboard"]['lien']?>">Tableau de bord</a></li>
 				<li><a href="<?=$routes["dashboardCarrousel"]['lien']?>">Gestion du carrousel</a></li>
 				<li><a href="<?=$routes["dashboardComment"]['lien']?>">Gestion des commentaires</a></li>

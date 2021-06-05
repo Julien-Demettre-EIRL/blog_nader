@@ -7,13 +7,9 @@
 
 		<section>
 		<div class="owl-carousel">
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
+		<?php foreach ($imgs as $img): ?>
+			<img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>">
+			<?php endforeach?>
 </div>
 
 		</section>
@@ -27,7 +23,7 @@
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
 
 						<?php if (!is_null($post['imageFileName'])): ?>
-							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>"
+							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>"
 							alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
 						<h3><?=htmlspecialchars($post['title'])?></h3>
@@ -50,7 +46,7 @@
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
 
 						<?php if (!is_null($post['imageFileName'])): ?>
-							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
 						<h3><?=htmlspecialchars($post['title'])?></h3>
 
@@ -70,7 +66,7 @@
 				<article>
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
 						<?php if (!is_null($post['imageFileName'])): ?>
-							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
 						<h3><?=htmlspecialchars($post['title'])?></h3>
 

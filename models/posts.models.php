@@ -16,41 +16,7 @@ class PostsModel
             ]
         );
     }
-    public function RecuperationImageCarrousel($path)
-    {
-
-        $req = "
-	      SELECT
-		     image_Path
-	      FROM
-		      carrousel";
-        //On prepare la requete
-        $req = $this->bdd->prepare($req);
-        $req->bindValue(":image_path", $path, PDO::PARAM_STR);
-        //On exécute la requete
-        $req->execute();
-        $url = $req->fetch();
-
-        return $url;
-    }
-
-    public function InsertionImageCarrousel($path)
-    {
-
-        $url = "
-		  INSERT INTO
-	        carrousel
-	         (image_path)
-	      VALUES
-	         (:img)";
-
-        //On prepare la requete
-        $query = $this->bdd->prepare($url);
-        $query->bindValue(":img", $path);
-        //On exécute la requete
-        $url = $query->execute();
-    }
-
+    
     public function getAll()
     {
 
@@ -243,26 +209,38 @@ class PostsModel
         return $posts;
     }
 
-    public function update($title, $content, $imageFileName, $userId, $id)
+    public function update($title, $content, $imageFileName, $pos, $userId, $id)
     {
+        if($imageFileName!="")
+        {
         $query = '
 		  UPDATE
 				posts
 			SET
-				title = :title, content= :content, imageFileName = :imageFileName, writerId =:writerId
+				title = :title, content= :content, imageFileName = :imageFileName, position = :pos, writerId =:writerId
 
 			WHERE id=:id
 
 		';
+        } else {
+            $query = '
+            UPDATE
+                  posts
+              SET
+                  title = :title, content= :content, position = :pos, writerId =:writerId
+  
+              WHERE id=:id
+  
+          ';
+        }
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':title', trim($title), PDO::PARAM_STR);
         $sth->bindValue(':content', trim($content), PDO::PARAM_STR);
         $sth->bindValue(':id', trim($id), PDO::PARAM_INT);
-        if (isset($imageFileName)) {
+        $sth->bindValue(':pos', trim($pos), PDO::PARAM_STR);
+        if ($imageFileName!="") {
             $sth->bindValue(':imageFileName', $imageFileName, PDO::PARAM_STR);
-        } else {
-            $sth->bindValue(':imageFileName', null, PDO::PARAM_NULL);
-        }
+        } 
         $sth->bindValue(':writerId', $userId, PDO::PARAM_INT);
         $sth->execute();
     }

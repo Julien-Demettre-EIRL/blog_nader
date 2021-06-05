@@ -30,7 +30,8 @@
 					<?= $post['writerUsername'] ?>
 				</div>
 				<div class="col">
-					option
+					<a href="<?= $routes["postEditArticle"]["lien"] ?><?= $post['id'] ?>">Editer</a>
+					<a href="<?= $routes["postSupArticle"]["lien"] ?><?= $post['id'] ?>">Supprimer</a>
 				</div>
 			</div>
 		<?php } ?>
@@ -66,12 +67,17 @@
 			<div class="block p-20 form-container">
 
 				<h1>Ecrire un communiqué</h1>
+				<?php if($postEC["id"]=="") { ?>
+					<form action="<?=$routes["postAjoutArticle"]['lien']?>" method="post" enctype="multipart/form-data">
 
-				<form action="<?=$routes["postAjoutArticle"]['lien']?>" method="post" enctype="multipart/form-data">
-
+				<?php } else { ?>
+					<form action="<?=$routes["postEditArticle"]['lien']?><?= $postEC["id"]?>" method="post" enctype="multipart/form-data">
+					<input type="text" name="id" value="<?= $postEC["id"]?>">
+				<?php } ?>
+				
 					<div >
 						<label for="title" class="form-label">Titre</label>
-						<input type="text" name="title" placeholder="Titre" required class="form-control">
+						<input type="text" name="title" placeholder="Titre" required class="form-control" value="<?= $postEC["title"]?>">
 						<!-- <p class="text-error"></p> -->
 					</div>
 
@@ -85,7 +91,7 @@
 					<div >
 						<label for="category" class="form-label">Sélectionner l'emplacement du communiqué</label>
 						<select name="position" id="category" class="form-control">
-							<option selected>Choisir la position</option>
+							<option value="" selected>Choisir la position</option>
 							<option value="postGauche">Gauche</option>
 							<option value="postCentre">Centre</option>
 							<option value="postDroite">Droite</option>
@@ -94,7 +100,8 @@
 					</div>
 					<div >
 						<label for="content" class="form-label">Contenu</label>
-						<textarea name="content" placeholder="Contenu" required class="form-control"></textarea>
+						<textarea name="content" placeholder="Contenu" required class="form-control">
+						<?= $postEC["content"]?></textarea>
 						<!-- <p class="text-error"></p> -->
 					</div>
 					<div >

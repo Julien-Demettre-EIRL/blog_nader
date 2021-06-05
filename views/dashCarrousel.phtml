@@ -5,93 +5,36 @@
 		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 
 
-	<!--	<section class="container">
-		<?php foreach ($posts as $post){ ?>
+		<section class="container">
+		<?php foreach ($imgs as $img){ ?>
 			<div class="row">
 				<div class="col">
-					<?= $post['id'] ?>
+					<?= $img['id'] ?>
 				</div>
 				<div class="col">
-					<?= $post['title'] ?>
+					<img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>" alt="<?=htmlspecialchars($img['image_Path'])?>">
 				</div>
 				<div class="col">
-					<?= $post['content'] ?>
-				</div>
-				<div class="col">
-					<?= $post['imageFileName'] ?>
-				</div>
-				<div class="col">
-					<?= $post['position'] ?>
-				</div>
-				<div class="col">
-					<?= $post['publicationDate'] ?>
-				</div>
-				<div class="col">
-					<?= $post['writerUsername'] ?>
-				</div>
-				<div class="col">
-					option
+					<a href="<?= $routes["postSupImgCarrousel"]["lien"] ?><?= $img['id'] ?>">Supprimer</a>
 				</div>
 			</div>
 		<?php } ?>
-		</section>-->
+		</section>
 
 
-	<section class="container">
-			Carrousel non géré
-
-
-	<!--<article class="carrousel">
-
-		<div class="col-lg-4 bg-dark rounded px-4">
-			<h3 class="text-center text-light p-1"> Selectionner une image pour votre carousel </h3>
-			<form action="dashboard.php" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<input type="file" name="image" class="form-control p-1" required>
-				</div>
-				<div class="class-form-group">
-					<input type="submit" name="upload" class="btn btn-warning btn-block" value="Upload Image">
-				</div>
-				<div class="form-group">
-					<h5 class="text-center text-light"><?=$msg;?></h5>
-				</div>
-			</form>
-
-		</div>
-	</article>-->
-
-	<!--	<article class="container">
+	
+		<article class="container">
 		<div class="row">
 		<div class="col">
 			<div class="block p-20 form-container">
 
-				<h1>Ecrire un communiqué</h1>
-
-				<form action="<?=$routes["postAjoutArticle"]['lien']?>" method="post" enctype="multipart/form-data">
-
-					<div >
-						<label for="title" class="form-label">Titre</label>
-						<input type="text" name="title" placeholder="Titre" required class="form-control">
-					</div>
-
-					<div >
+				<h1>Ajouter une immage</h1>
+				<form action="<?=$routes["postAjoutImgCarrousel"]['lien']?>" method="post" enctype="multipart/form-data">
+				<div >
 						<label for="image" class="form-label">Image</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
 						<input type="file" name="image" accept="image/png, image/jpeg" class="form-control">
-					</div>
-
-					<div >
-						<label for="category" class="form-label">Sélectionner l'emplacement du communiqué</label>
-						<select name="position" id="category" class="form-control">
-							<option selected>Choisir la position</option>
-							<option value="postGauche">Gauche</option>
-							<option value="postCentre">Centre</option>
-							<option value="postDroite">Droite</option>
-						</select>
-					</div>
-					<div >
-						<label for="content" class="form-label">Contenu</label>
-						<textarea name="content" placeholder="Contenu" required class="form-control"></textarea>
+						<!-- <p class="text-error"></p> -->
 					</div>
 					<div >
 						<button class="btn btn-secondary" type="button">Annuler</button>
@@ -100,13 +43,9 @@
 				</form>
 			</div>
 			</div>
-			</div>
+		</div>
 		</article>
--->
 
-
-
-	</section>
 
 
 </body>

@@ -55,102 +55,15 @@ class PostsController
         $postsGauche = $postModel->RecuperationArticleGauche();
         $postsCentre = $postModel->RecuperationArticleCentre();
         $postsDroite = $postModel->RecuperationArticleDroite();
+
+        require_once dirname(__FILE__) . '/../models/carrousel.models.php';
+        $carrouselModel = new CarrouselModel();
+        $imgs = $carrouselModel->getAll();
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/index.phtml';
         }
     }
-    public function delArticle($id)
-    {
-        global $routes;
-        //    Si l'utilisateur n'est pas identifié
-        if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: ' . $routes["userCon"]["lien"]);
-            exit;
-        }
-
-        require_once dirname(__FILE__) . '/../models/posts.models.php';
-        $postModel = new PostsModel();
-
-        //    Récupération du nom de l'image de l'article
-        $imageFileName = $postModel->getNameImage((int) $id, (int) $_SESSION['userId']);
-
-        //    Suppression de l'éventuelle image
-        if (!is_null($imageFileName)) {
-            unlink('uploads/' . $imageFileName);
-        }
-
-        //    Suppression de l'article
-        $postModel->delete((int) $id, (int) $_SESSION['userId']);
-
-        //    Redirection vers le tableau de bord
-        header('Location: ' . $routes["dashboard"]["lien"]);
-        exit;
-    }
-    public function editArticle($id)
-    {
-        global $routes;
-        require_once dirname(__FILE__) . '/../models/posts.models.php';
-        $postModel = new PostsModel();
-
-        //    Si l'utilisateur n'est pas identifié
-        if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: ' . $routes["userCon"]["lien"]);
-            exit;
-        }
-
-        //    Traitement du formulaire de publication d'un article s'il a été soumis
-        if (!empty($_POST)) {
-
-            $imageFileName = $this->moveImg('image');
-
-            $postModel->update($_POST['title'], $_POST['content'], $imageFileName, (int) $_SESSION['userId'], (int) $_POST['id']);
-
-            //    Redirection vers le tableau de bord
-            header('Location: ' . $routes["dashboard"]["lien"]);
-            exit;
-        }
-
-        //    Inclusion du HTML
-        require dirname(__FILE__) . '/../views/edit-post.phtml';
-
-    }
-
-    public function ajoutArticle()
-    {
-        global $routes;
-        //    Si l'utilisateur n'est pas identifié
-        if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: ' . $routes["userCon"]["lien"]);
-            exit;
-        }
-
-        //    Traitement du formulaire de publication d'un article s'il a été soumis
-        if (!empty($_POST)) {
-            require_once dirname(__FILE__) . '/../models/posts.models.php';
-            $postModel = new PostsModel();
-            echo "on post";
-            $imageFileName = $this->moveImg('image');
-            if($imageFileName!==false)
-            {
-
-            $postModel->add($_POST['title'], $_POST['content'], $imageFileName, $_SESSION['userId'], $_POST['position']);
-
-            //    Redirection vers le tableau de bord
-                echo'ajout Ok !';
-          //  header('Location: ' . $routes["dashboard"]["lien"]);
-            exit;
-            }
-            
-        }
-        else {
-        //    Inclusion du HTML
-        require dirname(__FILE__) . '/../views/dashboard.phtml';
-        }
-
-    }
+   
     public function listeArticleRedacteur($idRedac)
     {
         global $routes;
@@ -166,37 +79,7 @@ class PostsController
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/writer.phtml';
     }
-    private function moveImg($nomChamp)
-    {
-        $imageFileName = "";
-        if (array_key_exists($nomChamp, $_FILES)) {
-            if ($_FILES[$nomChamp]['error'] == 0) {
-                if (in_array(mime_content_type($_FILES[$nomChamp]['tmp_name']), ['image/png', 'image/jpeg'])) {
-                    if ($_FILES[$nomChamp]['size'] <= 3000000) {
-                        $imageFileName = uniqid() . '.' . pathinfo($_FILES[$nomChamp]['name'], PATHINFO_EXTENSION);
-                        if (!file_exists(dirname(__FILE__) . '/../uploads/')) {
-                            mkdir(dirname(__FILE__) . '/../uploads/', 0777, true);
-                        }
-                        if(!move_uploaded_file($_FILES[$nomChamp]['tmp_name'], dirname(__FILE__) . '/../uploads/' . $imageFileName))
-                        {
-                            echo 'Le fichier n\'a pas été déplacé';
-                            return false;
-                        }
-                    } else {
-                        echo 'Le fichier est trop volumineux…';
-                        return false;
-                    }
-                } else {
-                    echo 'Le type mime du fichier est incorrect…';
-                    return false;
-                }
-            } else {
-                echo 'Le fichier n\'a pas pu être récupéré…';
-                return false;
-            }
-        }
-        return $imageFileName;
-    }
+  
     private function modeInstall()
     {
         global $routes;
