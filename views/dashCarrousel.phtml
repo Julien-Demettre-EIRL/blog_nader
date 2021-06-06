@@ -6,19 +6,24 @@
 
 
 		<section class="container">
+		<table class="table table-striped">
+		<thead>
+			<tr>
+			<th scope="col">id</th>
+			<th scope="col">Image</th>
+			<th scope="col">Option</th>
+			</tr>
+		</thead>
+		<tbody>
 		<?php foreach ($imgs as $img){ ?>
-			<div class="row">
-				<div class="col">
-					<?= $img['id'] ?>
-				</div>
-				<div class="col">
-					<img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>" alt="<?=htmlspecialchars($img['image_Path'])?>">
-				</div>
-				<div class="col">
-					<a href="<?= $routes["postSupImgCarrousel"]["lien"] ?><?= $img['id'] ?>">Supprimer</a>
-				</div>
-			</div>
+			<tr>
+			<th scope="row"><?= $img['id'] ?></th>
+			<td><img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>" alt="<?=htmlspecialchars($img['image_Path'])?>"></td>
+			<td><a href="<?= $routes["postSupImgCarrousel"]["lien"] ?><?= $img['id'] ?>">Supprimer</a></td>
+			</tr>
 		<?php } ?>
+		</tbody>
+		</table>
 		</section>
 
 

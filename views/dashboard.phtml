@@ -6,35 +6,40 @@
 
 
 		<section class="container">
+		<table class="table table-striped">
+		<thead>
+			<tr>
+			<th scope="col">id</th>
+			<th scope="col">Titre</th>
+			<th scope="col">Contenu</th>
+			<th scope="col">Nom Image</th>
+			<th scope="col">Position</th>
+			<th scope="col">Date de publication</th>
+			<th scope="col">Utilisateur</th>
+			<th scope="col">Option</th>
+			</tr>
+		</thead>
+		<tbody>
 		<?php foreach ($posts as $post){ ?>
-			<div class="row">
-				<div class="col">
+			<tr>
+			<th scope="row">
 					<?= $post['id'] ?>
-				</div>
-				<div class="col">
-					<?= $post['title'] ?>
-				</div>
-				<div class="col">
-					<?= $post['content'] ?>
-				</div>
-				<div class="col">
-					<?= $post['imageFileName'] ?>
-				</div>
-				<div class="col">
-					<?= $post['position'] ?>
-				</div>
-				<div class="col">
-					<?= $post['publicationDate'] ?>
-				</div>
-				<div class="col">
-					<?= $post['writerUsername'] ?>
-				</div>
-				<div class="col">
+				</th>
+				<td><?= $post['title'] ?></td>
+				<td><?= $post['content'] ?></td>
+				<td><?= $post['imageFileName'] ?></td>
+				<td><?= $post['position'] ?></td>
+				<td><?= $post['publicationDate'] ?></td>
+				<td><?= $post['writerUsername'] ?></td>
+				<td>
 					<a href="<?= $routes["postEditArticle"]["lien"] ?><?= $post['id'] ?>">Editer</a>
 					<a href="<?= $routes["postSupArticle"]["lien"] ?><?= $post['id'] ?>">Supprimer</a>
-				</div>
-			</div>
+				</td>
+			</tr>
 		<?php } ?>
+		</tbody>
+		</table>
+		
 		</section>
 
 

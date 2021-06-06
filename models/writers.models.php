@@ -17,6 +17,14 @@ class WritersModel
         );
     }
 
+    public function getAll()
+    {
+        $query = 'SELECT * FROM writers';
+        $sth = $this->bdd->query($query);
+        $writers = $sth->fetchAll();
+        return $writers;
+    }
+
     public function getOne($id)
     {
         $query = '

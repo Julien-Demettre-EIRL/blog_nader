@@ -223,7 +223,43 @@ class DashboardController
             exit;
         }
 
+        require_once dirname(__FILE__) . '/../models/comments.models.php';
+        $commentModel = new CommentsModel();
+        $comments = $commentModel->getAllNotValid();
         require dirname(__FILE__) . '/../views/dashComments.phtml';
+    }
+    public function validComment($id){
+        global $routes;
+          //    Si l'utilisateur n'est pas identifié
+          if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: '.$routes["userCon"]["lien"]);
+            exit;
+        }
+
+        require_once dirname(__FILE__) . '/../models/comments.models.php';
+        $commentModel = new CommentsModel();
+        $commentModel->valid((int)$id);
+        header('Location: ' . $routes["dashboardComment"]["lien"]);
+        exit;
+
+    }
+    public function deleteComment($id){
+        global $routes;
+          //    Si l'utilisateur n'est pas identifié
+          if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: '.$routes["userCon"]["lien"]);
+            exit;
+        }
+
+        require_once dirname(__FILE__) . '/../models/comments.models.php';
+        $commentModel = new CommentsModel();
+        $commentModel->delete((int)$id);
+
+        header('Location: ' . $routes["dashboardComment"]["lien"]);
+        exit;
+
     }
     public function afficheDashUser()
     {
@@ -234,8 +270,44 @@ class DashboardController
             header('Location: '.$routes["userCon"]["lien"]);
             exit;
         }
+        require_once dirname(__FILE__) . '/../models/writers.models.php';
+        $writerModel = new WritersModel();
+        $usrs = $writerModel->getAll();
 
         require dirname(__FILE__) . '/../views/dashUser.phtml';
+    }
+    public function enregistrementUser()
+    {
+        global $routes;
+         //    Si l'utilisateur n'est pas identifié
+         if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: '.$routes["userCon"]["lien"]);
+            exit;
+        }
+
+        if (!empty($_POST)) {
+
+            require_once dirname(__FILE__) . '/../models/writers.models.php';
+            $writerModel = new WritersModel();
+            $writerModel->add($_POST['username'], $_POST['password']);
+
+            //    Redirection vers la page d'identification
+            header('Location: '.$routes["dashboardUser"]["lien"]);
+            exit;
+        }
+
+        //    Inclusion du HTML
+        require dirname(__FILE__) . '/../views/sign-up.phtml';
+    }
+    public function deconnexionUser()
+    {
+        global $routes;
+        session_unset();
+        session_destroy();
+        //    Redirection vers la page d'identification
+        header('location: '.$routes["postGetArticle"]["lien"]);
+        exit;
     }
     private function moveImg($nomChamp)
     {
