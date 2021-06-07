@@ -51,7 +51,7 @@ class DashboardController
         $postModel = new PostsModel();
 
         //    Récupération du nom de l'image de l'article
-        $imageFileName = $postModel->getNameImage((int) $id, (int) $_SESSION['userId']);
+        $imageFileName = $postModel->getNameImage((int) $id);
 
         //    Suppression de l'éventuelle image
         if (!is_null($imageFileName)) {
@@ -59,7 +59,7 @@ class DashboardController
         }
 
         //    Suppression de l'article
-        $postModel->delete((int) $id, (int) $_SESSION['userId']);
+        $postModel->delete((int) $id);
 
         //    Redirection vers le tableau de bord
         header('Location: ' . $routes["dashboard"]["lien"]);
@@ -213,54 +213,7 @@ class DashboardController
         header('Location: ' . $routes["dashboardCarrousel"]["lien"]);
         exit;
     }
-    public function afficheDashComment()
-    {
-        global $routes;
-        //    Si l'utilisateur n'est pas identifié
-        if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: '.$routes["userCon"]["lien"]);
-            exit;
-        }
-
-        require_once dirname(__FILE__) . '/../models/comments.models.php';
-        $commentModel = new CommentsModel();
-        $comments = $commentModel->getAllNotValid();
-        require dirname(__FILE__) . '/../views/dashComments.phtml';
-    }
-    public function validComment($id){
-        global $routes;
-          //    Si l'utilisateur n'est pas identifié
-          if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: '.$routes["userCon"]["lien"]);
-            exit;
-        }
-
-        require_once dirname(__FILE__) . '/../models/comments.models.php';
-        $commentModel = new CommentsModel();
-        $commentModel->valid((int)$id);
-        header('Location: ' . $routes["dashboardComment"]["lien"]);
-        exit;
-
-    }
-    public function deleteComment($id){
-        global $routes;
-          //    Si l'utilisateur n'est pas identifié
-          if (!array_key_exists('userId', $_SESSION)) {
-            //    Redirection vers la page d'identification
-            header('Location: '.$routes["userCon"]["lien"]);
-            exit;
-        }
-
-        require_once dirname(__FILE__) . '/../models/comments.models.php';
-        $commentModel = new CommentsModel();
-        $commentModel->delete((int)$id);
-
-        header('Location: ' . $routes["dashboardComment"]["lien"]);
-        exit;
-
-    }
+    
     public function afficheDashUser()
     {
         global $routes;

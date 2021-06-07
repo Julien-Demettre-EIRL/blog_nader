@@ -7,33 +7,11 @@ class PostsController
         global $routes;
         
             require_once dirname(__FILE__) . '/../models/posts.models.php';
-            require_once dirname(__FILE__) . '/../models/comments.models.php';
-
+        
             $postModel = new PostsModel();
-            $commentModel = new CommentsModel();
-
+        
             $post = $postModel->getOne($id);
-            $comments = $commentModel->getByPost($id);
-
-            if (!empty($_POST)) {
-                extract($_POST);
-                $errors = array();
-                $author = strip_tags($author);
-                $comment = strip_tags($content);
-                if (empty($author)) {
-                    array_push($errors, 'Entrez votre email');
-                }
-
-                if (empty($comment)) {
-                    array_push($errors, 'Entrez un commentaire');
-                }
-
-                if (count($errors) == 0) {
-                    $comment = $commentModel->add($postId, $author, $content);
-                    $success = "Votre commentaire est soumis au modérateur avant d'être publié";
-                }
-            }
-
+        
             require dirname(__FILE__) . '/../views/post.phtml';
         
 

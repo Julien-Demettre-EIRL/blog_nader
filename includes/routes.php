@@ -117,34 +117,6 @@ $routes["postSupImgCarrousel"] = [ //Suppression image carrousel
     "param"=>true
 ];
 
-$routes["dashboardComment"] = [ //Tableau de bord commentaires
-    "lien"=>"./index.php?controller=dashboard&action=comment",
-    "controller"=>"dashboard",
-    "action"=>"comment",
-    "fichierController"=>'./controller/dashboard.controller.php',
-    "classController"=>"DashboardController",
-    "funcController"=>"afficheDashComment",
-    "param"=>false
-];
-$routes["commentValid"] = [ //Validation d'un commentaire
-    "lien"=>"./index.php?controller=comment&action=valid&id=",
-    "controller"=>"comment",
-    "action"=>"valid",
-    "fichierController"=>'./controller/dashboard.controller.php',
-    "classController"=>"DashboardController",
-    "funcController"=>"validComment",
-    "param"=>true
-];
-$routes["commentSupp"] = [  //Suppression d'un commentaire
-    "lien"=>"./index.php?controller=comment&action=supp&id=",
-    "controller"=>"comment",
-    "action"=>"supp",
-    "fichierController"=>'./controller/dashboard.controller.php',
-    "classController"=>"DashboardController",
-    "funcController"=>"deleteComment",
-    "param"=>true
-];
-
 $routes["dashboardUser"] = [    //Tableau de bord utilisateurs
     "lien"=>"./index.php?controller=dashboard&action=user",
     "controller"=>"dashboard",

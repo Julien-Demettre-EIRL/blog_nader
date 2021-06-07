@@ -46,37 +46,6 @@ if (!empty($errors)): ?>
 			<?php endforeach;?>
 		<?php endif;?>
 
-		<div class="row">
-			<div class="col-md-6">
-				<form action="<?=$routes["postGetAjout"]['lien']?><?=$id?>" method="post">
-					<input type="hidden" name="postId" value="<?=$id?>">
-					<p><label for="username">Email :</label></br>
-						<input type="text" name="author" id="username" placeholder="Votre email" value="<?php if (isset($author)) {
-    echo $author;
-}
-?>" class="form-control" />
-					</p>
-					<p><label for="content">Commentaire :</label></br>
 
-						<textarea name="content" placeholder="Votre commentaire" id="content" cols="30" rows="5" class="form-control">
-			<?php if (isset($comment)) {
-    echo $comment;
-}
-?></textarea>
-					</p>
-					<button type="submit" value="1" class="btn btn-success">Envoyer</button>
-				</form>
-			</div>
-		</div>
-
-
-		<h2>Commentaires</h2>
-
-		<?php foreach ($comments as $com): ?>
-			<h3><?=$com->username?></h3>
-			<p><?=$com->content?></p>
-		<?php endforeach;?>
-
-		</br></br>
 	</div>
 	<?php require dirname(__FILE__) . '/../views/foot.phtml'?>

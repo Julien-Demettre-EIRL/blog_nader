@@ -244,7 +244,7 @@ class PostsModel
         $sth->bindValue(':writerId', $userId, PDO::PARAM_INT);
         $sth->execute();
     }
-    public function getNameImage($id, $writterId)
+    public function getNameImage($id)
     {
         $query =
             '
@@ -254,17 +254,14 @@ class PostsModel
                 posts
             WHERE
                 id = :id
-                AND
-                writerId = :writerId
         ';
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
-        $sth->bindValue(':writerId', $writterId, PDO::PARAM_INT);
         $sth->execute();
         $imageFileName = $sth->fetchColumn();
         return $imageFileName;
     }
-    public function delete($id, $writterId)
+    public function delete($id)
     {
         $query =
             '
@@ -272,12 +269,9 @@ class PostsModel
                 posts
             WHERE
                 id = :id
-                AND
-                writerId = :writerId
         ';
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
-        $sth->bindValue(':writerId', $writterId, PDO::PARAM_INT);
         $sth->execute();
     }
 }

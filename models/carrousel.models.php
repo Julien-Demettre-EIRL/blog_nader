@@ -59,4 +59,21 @@ class CarrouselModel
         //On exécute la requete
         $url = $query->execute();
     }
+    public function getNameImage($id)
+    {
+        $query =
+            '
+            SELECT
+            image_path
+            FROM
+                carrousel
+            WHERE
+                id = :id
+         ';
+        $sth = $this->bdd->prepare($query);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+        $sth->execute();
+        $imageFileName = $sth->fetchColumn();
+        return $imageFileName;
+    }
 }
