@@ -117,6 +117,34 @@ $routes["postSupImgCarrousel"] = [ //Suppression image carrousel
     "param"=>true
 ];
 
+$routes["dashboardVideo"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=video",
+    "controller"=>"dashboard",
+    "action"=>"video",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"affVideo",
+    "param"=>false
+];
+$routes["dashboardVideoUp"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=upVid",
+    "controller"=>"dashboard",
+    "action"=>"upVid",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"uploadVideo",
+    "param"=>false
+];
+$routes["dashboardVideoIns"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=insVid",
+    "controller"=>"dashboard",
+    "action"=>"insVid",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"insertVideo",
+    "param"=>false
+];
+
 $routes["dashboardUser"] = [    //Tableau de bord utilisateurs
     "lien"=>"./index.php?controller=dashboard&action=user",
     "controller"=>"dashboard",

@@ -1,0 +1,55 @@
+<?php require dirname(__FILE__) . '/../views/head.phtml'?>
+
+	<div class="container1">
+
+		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+
+
+		<section class="container">
+		<table class="table table-striped">
+		<thead>
+			<tr>
+			<th scope="col">id</th>
+			<th scope="col">Video</th>
+			<th scope="col">Option</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($vids as $vid){ ?>
+			<tr>
+			<th scope="row"><?= $vid['id'] ?></th>
+			<td><?= $vid['video_path'] ?></td>
+			<td>
+			<a href="<?= $routes["postSupImgCarrousel"]["lien"] ?><?= $vid['id'] ?>">Supprimer</a></td>
+			</tr>
+		<?php } ?>
+		</tbody>
+		</table>
+		</section>
+
+
+	
+		<article class="container">
+		<div class="row">
+		<div class="col">
+			<div class="block p-20 form-container">
+
+				<h1>Ajouter une vidéo</h1>
+				<form action="<?=$routes["postAjoutImgCarrousel"]['lien']?>" method="post" enctype="multipart/form-data">
+				<form>
+        <input type="file" name="file" id="file-input" />
+        <input type="button" value="Télécharger" id="submit-button" />
+    </form>
+
+    <div id="upload-progress"></div>
+				</form>
+			</div>
+			</div>
+		</div>
+		</article>
+
+		<script type="text/javascript" src="./js/upload.js" defer></script>
+
+</body>
+
+</html>
