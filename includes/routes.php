@@ -144,6 +144,15 @@ $routes["dashboardVideoIns"] = [    //Tableau de bord utilisateurs
     "funcController"=>"insertVideo",
     "param"=>false
 ];
+$routes["dashboardVideoDel"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=delVid",
+    "controller"=>"dashboard",
+    "action"=>"delVid",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"delVideo",
+    "param"=>true
+];
 
 $routes["dashboardUser"] = [    //Tableau de bord utilisateurs
     "lien"=>"./index.php?controller=dashboard&action=user",
