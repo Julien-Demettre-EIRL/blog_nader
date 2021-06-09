@@ -48,32 +48,32 @@ class VideoModel
     }
     public function delete($id)
     {
-/*
+
         $url = "
-		  DELETE FROM carrousel
+		  DELETE FROM video
           WHERE id=:id";
 
         //On prepare la requete
         $query = $this->bdd->prepare($url);
         $query->bindValue(":id", $id,PDO::PARAM_INT);
         //On exécute la requete
-        $url = $query->execute();*/
+        $url = $query->execute();
     }
-    public function getNameImage($id)
+    public function getNameVid($id)
     {
-    /*    $query =
+        $query =
             '
             SELECT
-            image_path
+            video_path
             FROM
-                carrousel
+                video
             WHERE
                 id = :id
          ';
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
         $sth->execute();
-        $imageFileName = $sth->fetchColumn();
-        return $imageFileName;*/
+        $videoFileName = $sth->fetchColumn();
+        return $videoFileName;
     }
 }

@@ -203,7 +203,7 @@ class DashboardController
 
         //    Suppression de l'éventuelle image
         if (!is_null($imageFileName)) {
-            unlink('uploads/' . $imageFileName);
+            unlink(dirname(__FILE__) . '/../uploads/' . $imageFileName);
         }
 
         //    Suppression de l'article
@@ -277,6 +277,35 @@ class DashboardController
      //         header('Location: ' . $routes["dashboardVideo"]["lien"]);
 
     }
+    public function delVideo($id)
+    {
+        global $routes;
+        //    Si l'utilisateur n'est pas identifié
+        if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: ' . $routes["userCon"]["lien"]);
+            exit;
+        }
+
+        require_once dirname(__FILE__) . '/../models/video.models.php';
+        $videoModel = new VideoModel();
+
+        //    Récupération du nom de l'image de l'article
+        $videoFileName = $videoModel->getNameVid((int) $id);
+
+        //    Suppression de l'éventuelle image
+        if (!is_null($videoFileName)) {
+            unlink(dirname(__FILE__) . '/../uploads/' . $videoFileName);
+        }
+
+        //    Suppression de l'article
+        $videoModel->delete((int) $id);
+
+        //    Redirection vers le tableau de bord
+        header('Location: ' . $routes["dashboardVideo"]["lien"]);
+        exit;
+    }
+    
 
     public function afficheDashUser()
     {
