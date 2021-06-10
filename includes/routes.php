@@ -145,12 +145,21 @@ $routes["dashboardVideoIns"] = [    //Tableau de bord utilisateurs
     "param"=>false
 ];
 $routes["dashboardVideoDel"] = [    //Tableau de bord utilisateurs
-    "lien"=>"./index.php?controller=dashboard&action=delVid",
+    "lien"=>"./index.php?controller=dashboard&action=delVid&id=",
     "controller"=>"dashboard",
     "action"=>"delVid",
     "fichierController"=>'./controller/dashboard.controller.php',
     "classController"=>"DashboardController",
     "funcController"=>"delVideo",
+    "param"=>true
+];
+$routes["postLectureVid"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=post&action=lectVid&id=",
+    "controller"=>"post",
+    "action"=>"lectVid",
+    "fichierController"=>'./controller/posts.controller.php',
+    "classController"=>"PostsController",
+    "funcController"=>"lireVideo",
     "param"=>true
 ];
 

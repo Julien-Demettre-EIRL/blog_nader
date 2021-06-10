@@ -83,7 +83,11 @@
 		</section>
 
 
-		
+		<section>
+		<?php foreach ($tabJwt as $jwt) { ?>
+        <video controls src="stream.php?id=<?=$jwt?>" width="300px"></video>
+    <?php } ?>
+		</section>
 
 
 		<!-- <section class="content">

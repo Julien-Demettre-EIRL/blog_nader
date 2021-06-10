@@ -29,6 +29,20 @@ class VideoModel
               $res = $sth->fetchAll();
               return $res;
     }
+    public function getThree()
+    {
+
+        $query = "
+	      SELECT
+		    id, 
+            video_path
+	      FROM
+		      video
+              LIMIT 3";
+              $sth = $this->bdd->query($query);
+              $res = $sth->fetchAll();
+              return $res;
+    }
 
     public function add($path)
     {

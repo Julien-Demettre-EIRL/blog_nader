@@ -7,5 +7,7 @@
             "email": "julien@jdedev.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "firebase/php-jwt": "^5.3"
+    }
 }
