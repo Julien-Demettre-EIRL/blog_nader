@@ -243,7 +243,7 @@ class DashboardController
         }
 
         // $file_path: fichier cible: garde le même nom de fichier, dans le dossier uploads
-        $file_path = dirname(__FILE__) . '/../video/' . $_POST['file'];
+        $file_path = dirname(__FILE__) . '/../video/' .$_POST['file'];
         $file_data = $this->decode_chunk($_POST['file_data']);
 
         if (false === $file_data) {
@@ -260,19 +260,36 @@ class DashboardController
   /*      $file = fopen($file_path, "ab+");
 fwrite($file, $file_data);
 fclose($file);*/
-file_put_contents($file_path, $file_data, FILE_APPEND);
-$tailleFin = 0;
-$i=0;
-        while($tailleFin<=$tailleDeb)
-        {
-            $i++;
-            $tailleFin = filesize($file_path);
-            usleep(100000);
-            if($i>10) break;
-        } 
+if(!file_exists($file_path))
+{
+    $fpLog = @fopen($file_path, 'w+');
+}
+else {
+$fpLog = @fopen($file_path, 'a+');
+}
+if ($fpLog) {
+	@fwrite($fpLog, $file_data);
+    eio_fsync($fpLog,EIO_PRI_MAX,$this->retFunc);
+	@fclose($fpLog);
+   
+}
+// file_put_contents($file_path, $file_data, FILE_APPEND);
+// $tailleFin = 0;
+// $i=0;
+//         while($tailleFin<=$tailleDeb)
+//         {
+//             $i++;
+//             $tailleFin = filesize($file_path);
+//             usleep(100000);
+//             if($i>10) break;
+//         } 
        // file_put_contents($file_path, $file_data, FILE_APPEND);
 
         // nécessaire pour que JavaScript considère que la requête s'est bien passée:
+        
+    }
+    public function retFunc($data,$res)
+    {
         echo json_encode([]); 
     }
     
@@ -313,7 +330,7 @@ $i=0;
 
         //    Suppression de l'éventuelle image
         if (!is_null($videoFileName)) {
-            unlink(dirname(__FILE__) . '/../uploads/' . $videoFileName);
+            unlink(dirname(__FILE__) . '/../video/' . $videoFileName);
         }
 
         //    Suppression de l'article
