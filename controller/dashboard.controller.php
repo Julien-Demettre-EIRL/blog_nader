@@ -252,7 +252,25 @@ class DashboardController
 
         /* on ajoute le segment de données qu'on vient de recevoir 
         * au fichier qu'on est en train de ré-assembler: */
-        file_put_contents($file_path, $file_data, FILE_APPEND);
+        $tailleDeb = 0;
+        if(file_exists($file_path)){
+            $tailleDeb = filesize($file_path);
+        }
+        
+  /*      $file = fopen($file_path, "ab+");
+fwrite($file, $file_data);
+fclose($file);*/
+file_put_contents($file_path, $file_data, FILE_APPEND);
+$tailleFin = 0;
+$i=0;
+        while($tailleFin<=$tailleDeb)
+        {
+            $i++;
+            $tailleFin = filesize($file_path);
+            usleep(100000);
+            if($i>10) break;
+        } 
+       // file_put_contents($file_path, $file_data, FILE_APPEND);
 
         // nécessaire pour que JavaScript considère que la requête s'est bien passée:
         echo json_encode([]); 
