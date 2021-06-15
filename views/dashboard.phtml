@@ -105,7 +105,7 @@
 					</div>
 					<div >
 						<label for="content" class="form-label">Contenu</label>
-						<textarea name="content" placeholder="Contenu" required class="form-control">
+						<textarea name="content" placeholder="Contenu" required class="form-control" id="froala-editor">
 						<?= $postEC["content"]?></textarea>
 						<!-- <p class="text-error"></p> -->
 					</div>
@@ -124,7 +124,9 @@
 
 	</section>
 
-
+	<script>
+  new FroalaEditor('textarea#froala-editor')
+</script>
 </body>
 
 </html>
