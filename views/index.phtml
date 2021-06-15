@@ -22,7 +22,7 @@
 				<article>
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
 
-						<?php if (!is_null($post['imageFileName'])): ?>
+						<?php if (!empty($post['imageFileName'])): ?>
 							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>"
 							alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
@@ -45,7 +45,7 @@
 				<article class="article-small">
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
 
-						<?php if (!is_null($post['imageFileName'])): ?>
+						<?php if (!empty($post['imageFileName'])): ?>
 							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
 						<h3><?=htmlspecialchars($post['title'])?></h3>
@@ -65,7 +65,7 @@
 			<?php foreach ($postsDroite as $post): ?>
 				<article>
 					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-						<?php if (!is_null($post['imageFileName'])): ?>
+						<?php if (!empty($post['imageFileName'])): ?>
 							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
 						<?php endif;?>
 						<h3><?=htmlspecialchars($post['title'])?></h3>

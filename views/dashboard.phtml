@@ -105,7 +105,7 @@
 					</div>
 					<div >
 						<label for="content" class="form-label">Contenu</label>
-						<textarea name="content" placeholder="Contenu" required class="form-control" id="froala-editor">
+						<textarea name="content" placeholder="Contenu" required class="form-control" id="tiny">
 						<?= $postEC["content"]?></textarea>
 						<!-- <p class="text-error"></p> -->
 					</div>
@@ -124,9 +124,7 @@
 
 	</section>
 
-	<script>
-  new FroalaEditor('textarea#froala-editor')
-</script>
+	<script>tinymce.init({selector:'textarea#tiny'});</script>
 </body>
 
 </html>
