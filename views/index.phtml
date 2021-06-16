@@ -1,190 +1,61 @@
 <?php require dirname(__FILE__) . '/../views/head.phtml'?>
-
-	<div class="container1">
-
-		<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
-
-
-		<section>
-		<div class="owl-carousel">
+<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+<section id="carrousel">
+	<div class="owl-carousel">
 		<?php foreach ($imgs as $img): ?>
 			<img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>">
-			<?php endforeach?>
-</div>
-
-		</section>
-
-
-		<section class="showcase">
-
-
-			<?php foreach ($postsGauche as $post): ?>
-				<article>
-					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-
-						<?php if (!empty($post['imageFileName'])): ?>
-							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>"
-							alt="<?=htmlspecialchars($post['title'])?>">
-						<?php endif;?>
-						<h3><?=htmlspecialchars($post['title'])?></h3>
-
-						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
-								<?=htmlspecialchars($post['writerUsername'])?></a></p>
-						<p class="text-hint">le <?=$post['publicationDate']?>
-
-							<i class="fas fa-star mx-1"></i>
-						</p>
-				</article>
-			<?php endforeach?>
-
-
-
-
-
-			<?php /*var_dump($postsCentre);*/foreach ($postsCentre as $post): ?>
-				<article class="article-small">
-					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-
-						<?php if (!empty($post['imageFileName'])): ?>
-							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-						<?php endif;?>
-						<h3><?=htmlspecialchars($post['title'])?></h3>
-
-						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
-								<?=htmlspecialchars($post['writerUsername'])?></a></p>
-								<br>
-						<p class="text-hint">le <?=$post['publicationDate']?>
-							<i class="fas fa-star mx-1"></i>
-
-						</p>
-				</article>
-			<?php endforeach?>
-
-
-
-			<?php foreach ($postsDroite as $post): ?>
-				<article>
-					<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-						<?php if (!empty($post['imageFileName'])): ?>
-							<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-						<?php endif;?>
-						<h3><?=htmlspecialchars($post['title'])?></h3>
-
-						<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
-								<?=htmlspecialchars($post['writerUsername'])?></a></p>
-						<p class="text-hint">le <?=$post['publicationDate']?>
-
-							<i class="fas fa-star mx-1"></i>
-						</p>
-				</article>
-			<?php endforeach?>
-
-
-		</section>
-
-
-		<section>
-		<?php foreach ($tabJwt as $jwt) { ?>
-        <video controls src="stream.php?id=<?=$jwt?>" width="300px"></video>
-    <?php } ?>
-		</section>
-
-
-		<!-- <section class="content">
-			<div class="articles">
-				<h2 class="underline">Communiqués</h2>
-
-
-				<?php foreach ($posts as $post): ?>
-					<article>
-						<a href="../controller/post.php?id=<?=intval($post['id'])?>">
-							<h3 class="underline"><?=htmlspecialchars($post['title'])?></h3>
-						</a>
-
-						<?php if (!is_null($post['imageFileName'])): ?>
-							<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-						<?php endif;?>
-						<p class="article-author" class="text-hint">Rédigé par <a href="../controller/writer.php?id=<?=intval($post['writerId'])?>">
-								<?=htmlspecialchars($post['writerUsername'])?></a></br>Lire la suite</p>
-						<p class="text-hint"> le <?=$post['publicationDate']?>
-							<i class="fas fa-star mx-1"></i>
-						</p>
-					</article>
-				<?php endforeach?>
-
-			</div>
-
-			<div class="popular">
-				<h2 class="underline">Populaires</h2>
-				<ul>
-					<li>
-
-
-						<?php foreach ($postsPopulaire as $post): ?>
-							<div>
-								<div>01</div>
-								<a href="../controller/post.php?id=<?=intval($post['id'])?>">
-									<h3><?=htmlspecialchars($post['title'])?></h3>
-								</a>
-								<?php if (!is_null($post['imageFileName'])): ?>
-									<img src="../uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-								<?php endif;?>
-								<p class="article-author">
-									Rédigé par <a href="../controller/writer.php?id=<?=intval($post['writerId'])?>">
-										<?=htmlspecialchars($post['writerUsername'])?></a></br>Lire la suite</p>
-								<p class="text-hint">le <?=$post['publicationDate']?>
-									<i class="fas fa-star mx-1"></i>
-								</p>
-							</div>
-						<?php endforeach?>
-
-					</li>
-
-
-
-
-
-
- -->
-
-		<!--
-            <li>
-              <div>02</div>
-              <div>
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p class="article-author">Lorem, ipsum</p>
-                <p class="text-hint">
-                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
-                </p>
-              </div>
-            </li>
-            <li>
-              <div>03</div>
-              <div>
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p class="article-author">Lorem, ipsum</p>
-                <p class="text-hint">
-                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
-                </p>
-              </div>
-            </li>
-            <li>
-              <div>04</div>
-              <div>
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p class="article-author">Lorem, ipsum</p>
-                <p class="text-hint">
-                  Oct 26 - 2 min read <i class="fas fa-star mx-1"></i>
-                </p>
-              </div>
-            </li> -->
-		<!--
-				</ul>
-			</div>
-		</section> -->
-
-
-
+		<?php endforeach?>
 	</div>
-
-	<?php require dirname(__FILE__) . '/../views/foot.phtml'?>
+</section>
+<section class="showcase">
+	<?php foreach ($postsGauche as $post): ?>
+		<article>
+			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+			<?php if (!empty($post['imageFileName'])): ?>
+				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>"
+					alt="<?=htmlspecialchars($post['title'])?>">
+			<?php endif;?>
+			<h3><?=htmlspecialchars($post['title'])?></h3>
+			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+				<?=htmlspecialchars($post['writerUsername'])?></a></p>
+			<p class="text-hint">le <?=$post['publicationDate']?>
+				<i class="fas fa-star mx-1"></i>
+			</p>
+		</article>
+	<?php endforeach?>
+	<?php /*var_dump($postsCentre);*/foreach ($postsCentre as $post): ?>
+		<article class="article-small">
+			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+			<?php if (!empty($post['imageFileName'])): ?>
+				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+			<?php endif;?>
+			<h3><?=htmlspecialchars($post['title'])?></h3>
+			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+				<?=htmlspecialchars($post['writerUsername'])?></a></p>
+			<br>
+			<p class="text-hint">le <?=$post['publicationDate']?>
+				<i class="fas fa-star mx-1"></i>
+			</p>
+		</article>
+	<?php endforeach?>
+	<?php foreach ($postsDroite as $post): ?>
+		<article>
+			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
+			<?php if (!empty($post['imageFileName'])): ?>
+				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
+			<?php endif;?>
+			<h3><?=htmlspecialchars($post['title'])?></h3>
+			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
+				<?=htmlspecialchars($post['writerUsername'])?></a></p>
+			<p class="text-hint">le <?=$post['publicationDate']?>
+				<i class="fas fa-star mx-1"></i>
+			</p>
+		</article>
+	<?php endforeach?>
+</section>
+<section id="videos">
+	<?php foreach ($tabJwt as $jwt) {?>
+        <video controls src="stream.php?id=<?=$jwt?>" width="300px"></video>
+    <?php }?>
+</section>
+<?php require dirname(__FILE__) . '/../views/foot.phtml'?>
