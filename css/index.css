@@ -97,7 +97,7 @@ article h3 {
 #showcase>article img{
     width:100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
 }
 .centreArt {
     display: flex;
@@ -119,7 +119,7 @@ article h3 {
 .article-small img {
 width:100%;
 height: 180px;
-object-fit: cover;
+object-fit: contain;
 }
 .article-small>*{
     width: 50%;
