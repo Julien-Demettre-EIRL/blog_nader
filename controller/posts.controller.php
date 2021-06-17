@@ -238,7 +238,7 @@ class PostsController
         header("Content-Type: video/mp4");
         header('Accept-Ranges: bytes');
         header('Content-Length:'.($end-$begin));
-        header("Content-Range: bytes $begin-".($end+1)+"/$size");
+        header("Content-Range: bytes ".$begin."-".($end+1)."/".$size);
       
         $cur=$begin;
         fseek($fm,$begin,0);

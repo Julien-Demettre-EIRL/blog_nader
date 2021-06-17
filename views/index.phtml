@@ -7,15 +7,17 @@
 		<?php endforeach?>
 	</div>
 </section>
-<section class="showcase">
+<section id="showcase">
 	<?php foreach ($postsGauche as $post): ?>
 		<article>
 			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-			<?php if (!empty($post['imageFileName'])): ?>
+			<?php if (!empty($post['imageFileName'])){ ?>
 				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>"
 					alt="<?=htmlspecialchars($post['title'])?>">
-			<?php endif;?>
-			<h3><?=htmlspecialchars($post['title'])?></h3>
+			<?php } else { ?>
+				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
+				<?php } ?>
+			<h3><?=htmlspecialchars($post['title'])?></h3></a>
 			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
 				<?=htmlspecialchars($post['writerUsername'])?></a></p>
 			<p class="text-hint">le <?=$post['publicationDate']?>
@@ -23,28 +25,38 @@
 			</p>
 		</article>
 	<?php endforeach?>
+	<div class="centreArt">
 	<?php /*var_dump($postsCentre);*/foreach ($postsCentre as $post): ?>
+		
 		<article class="article-small">
 			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-			<?php if (!empty($post['imageFileName'])): ?>
+			<?php if (!empty($post['imageFileName'])){ ?>
 				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-			<?php endif;?>
-			<h3><?=htmlspecialchars($post['title'])?></h3>
+				<?php } else { ?>
+				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
+				<?php } ?></a>
+				<div>
+			<h3><?=htmlspecialchars($post['title'])?></h3><
 			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
 				<?=htmlspecialchars($post['writerUsername'])?></a></p>
 			<br>
 			<p class="text-hint">le <?=$post['publicationDate']?>
 				<i class="fas fa-star mx-1"></i>
 			</p>
+			</div>
 		</article>
+
 	<?php endforeach?>
+	</div>
 	<?php foreach ($postsDroite as $post): ?>
 		<article>
 			<a href="<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>">
-			<?php if (!empty($post['imageFileName'])): ?>
+			<?php if (!empty($post['imageFileName'])){ ?>
 				<img src="./uploads/<?=htmlspecialchars($post['imageFileName'])?>" alt="<?=htmlspecialchars($post['title'])?>">
-			<?php endif;?>
-			<h3><?=htmlspecialchars($post['title'])?></h3>
+				<?php } else { ?>
+				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
+				<?php } ?>
+			<h3><?=htmlspecialchars($post['title'])?></h3></a>
 			<p>Rédigé par <a href="<?=$routes["postListeArticleRedac"]['lien']?><?=intval($post['writerId'])?>">
 				<?=htmlspecialchars($post['writerUsername'])?></a></p>
 			<p class="text-hint">le <?=$post['publicationDate']?>

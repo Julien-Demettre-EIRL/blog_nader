@@ -22,7 +22,7 @@ $bok = false;
 foreach ($headers as $header => $value) {
     if($header=='Range') $bok=true;
 }
-//$bok=true;
+$bok=true;
 $bok2 = false;
 $date = new DateTime();
 $key = "Nader_The_Best";
@@ -49,8 +49,8 @@ if($id!=0 && $bok && $bok2)
       
         $videoFileName = $videoModel->getNameVid((int) $id);
         $path = "./video/".$videoFileName;
-//var_dump($path);
-//var_dump($id);
+// var_dump($path);
+// var_dump($id);
   $size=filesize($path);
 
   $fm=@fopen($path,'rb');
@@ -79,19 +79,25 @@ if($id!=0 && $bok && $bok2)
   //also check for invalid ranges.
   $end = (empty($seek_end)) ? ($size - 1) : min(abs(intval($seek_end)),($size - 1));
   $begin = (empty($seek_start) || $seek_end < abs(intval($seek_start))) ? 0 : max(abs(intval($seek_start)),0);
+  if($end>($begin+8192)) $end=$begin+8192;
 
   if($begin>0||$end<$size)
     header('HTTP/1.0 206 Partial Content');
   else
     header('HTTP/1.0 200 OK');
 
-  header("Content-Type: video/mp4");
+  // header("Content-Type: video/mp4");
+  header("Content-Type: application/octet-stream");
   header('Accept-Ranges: bytes');
   header('Content-Length:'.($end-$begin));
   header("Content-Range: bytes $begin-".($end+1)+"/$size");
 
   $cur=$begin;
   fseek($fm,$begin,0);
+  // var_dump($fm);
+  // var_dump($begin);
+
+  // var_dump($end);
 
   print fread($fm,$end-$begin);
   die();

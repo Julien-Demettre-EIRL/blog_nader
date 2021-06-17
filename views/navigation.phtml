@@ -1,32 +1,25 @@
+<header>
 
+	<h1><a href="/" title="Service Presse Presidence de Djibouti"><img src="./img/logo_Service_Presse_Noir.jpg" alt="Service Presse Presidence de Djibouti"></a></h1>
 
-	<header>
+	<?php if (!array_key_exists('userId', $_SESSION)): ?>
+		<nav>
 
-		<a href="/">
+			<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
+			<a href="<?=$routes["postGetArticle"]['lien']?>" class="btn btn-light">Accueil</a>
+			<a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light">Connexion</button></a>
+			<!--<li><a href="<?=$routes["userAjout"]['lien']?>" button class="btn btn-light">Inscription</button></a></li>-->
 
-			<img src="./img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:130px">
+		</nav>
+	<?php else: ?>
+		<nav>
+			<a href="<?=$routes["postGetArticle"]['lien']?>">Accueil</a>
+			<a href="<?=$routes["dashboard"]['lien']?>">Tableau de bord</a>
+			<a href="<?=$routes["dashboardCarrousel"]['lien']?>">Gestion du carrousel</a>
+			<a href="<?=$routes["dashboardVideo"]['lien']?>">Gestion des vidéos</a>
+			<a href="<?=$routes["dashboardUser"]['lien']?>">Gestion des users</a>
+			<a href="<?=$routes["userDeco"]['lien']?>">Déconnexion</a>
+		</nav>
+	<?php endif;?>
 
-		</a>
-
-		<?php if (!array_key_exists('userId', $_SESSION)): ?>
-			<ul>
-
-				<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
-				<li><a href="<?=$routes["postGetArticle"]['lien']?>" class="btn btn-light">Accueil</a></li>
-				<li><a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light">Connexion</button></a></li>
-				<!--<li><a href="<?=$routes["userAjout"]['lien']?>" button class="btn btn-light">Inscription</button></a></li>-->
-
-			</ul>
-		<?php else: ?>
-			<ul>
-				<li><a href="<?=$routes["postGetArticle"]['lien']?>">Accueil</a></li>
-				<li><a href="<?=$routes["dashboard"]['lien']?>">Tableau de bord</a></li>
-				<li><a href="<?=$routes["dashboardCarrousel"]['lien']?>">Gestion du carrousel</a></li>
-				<li><a href="<?=$routes["dashboardVideo"]['lien']?>">Gestion des vidéos</a></li>
-				<li><a href="<?=$routes["dashboardUser"]['lien']?>">Gestion des users</a></li>
-				<li><a href="<?=$routes["userDeco"]['lien']?>">Déconnexion</a></li>
-			</ul>
-		<?php endif;?>
-
-	</header>
-
+</header>
