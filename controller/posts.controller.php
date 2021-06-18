@@ -69,22 +69,33 @@ class PostsController
         require dirname(__FILE__) . '/../views/index.phtml';
         }
     }
-   
-    public function listeArticleRedacteur($idRedac)
+    public function listeAllArticle()
     {
         global $routes;
         require_once dirname(__FILE__) . '/../models/posts.models.php';
-        require_once dirname(__FILE__) . '/../models/writers.models.php';
-
+        
         $postModel = new PostsModel();
-        $writerModel = new WritersModel();
-
-        $writer = $writerModel->getOne($idRedac);
-        $posts = $postModel->getByWriter($idRedac);
+        
+        $posts = $postModel->getAll();
 
         //    Inclusion du HTML
-        require dirname(__FILE__) . '/../views/writer.phtml';
+        require dirname(__FILE__) . '/../views/posts.phtml';
     }
+    // public function listeArticleRedacteur($idRedac)
+    // {
+    //     global $routes;
+    //     require_once dirname(__FILE__) . '/../models/posts.models.php';
+    //     require_once dirname(__FILE__) . '/../models/writers.models.php';
+
+    //     $postModel = new PostsModel();
+    //     $writerModel = new WritersModel();
+
+    //     $writer = $writerModel->getOne($idRedac);
+    //     $posts = $postModel->getByWriter($idRedac);
+
+    //     //    Inclusion du HTML
+    //     require dirname(__FILE__) . '/../views/writer.phtml';
+    // }
     public function connexionUser()
     {
         global $routes;
@@ -160,6 +171,63 @@ class PostsController
             $headers[$header] = $value;
         }
         return $headers;
+    }
+    public function allVid(){
+        global $routes;
+        require_once dirname(__FILE__) . '/../models/video.models.php';
+        
+        $videoModel = new VideoModel();
+        
+        $vids = $videoModel->getAll();
+        $tabJwt = [];
+        foreach($vids as $key=>$vid)
+        {
+            $key = "Nader_The_Best";
+            $date = new DateTime();
+            $date->modify('+1 hour');
+            $payload = array(
+                "expire" => $date->getTimestamp(),
+                "id"=>$vid['id']
+            );
+    
+            $jwt = JWT::encode($payload, $key);
+            array_push($tabJwt,urlencode($jwt));
+            //$tabJwt[$key]=urlencode($jwt);
+        }
+
+        //    Inclusion du HTML
+        require dirname(__FILE__) . '/../views/videos.phtml';
+    }
+    public function detVid($numVid){
+        global $routes;
+        require_once dirname(__FILE__) . '/../models/video.models.php';
+        
+        $videoModel = new VideoModel();
+
+        $key = "Nader_The_Best";
+        $jwt = urldecode($_GET['id']);
+        $decoded = JWT::decode($jwt, $key, array('HS256'));
+        $date = new DateTime();
+        $mtn = intval($date->getTimestamp());
+        $decoded = (array) $decoded;
+        $tok = intval($decoded["expire"]);
+        $id = intval($decoded["id"]);
+        
+        
+        $vid = $videoModel->getOne($id);
+        
+        $key = "Nader_The_Best";
+        $date = new DateTime();
+        $date->modify('+1 hour');
+        $payload = array(
+            "expire" => $date->getTimestamp(),
+            "id"=>$vid['id']
+        );
+    
+        $jwt = JWT::encode($payload, $key);
+        
+        //    Inclusion du HTML
+        require dirname(__FILE__) . '/../views/video.phtml';
     }
     public function lireVideo(){
       

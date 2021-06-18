@@ -84,11 +84,21 @@ section{
     min-width: 300px;
     max-width: 30%;
     height: 600px;
-    overflow: hidden;
+   /* overflow: hidden;*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+article {
+    -webkit-box-shadow: 2px 2px 5px 2px var(--gray-hint); 
+box-shadow: 2px 2px 5px 2px var(--gray-hint);
+transition: transform linear 0.5s;
+padding: 5px;
+}
+article:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 article h3 {
     font-size: 1.6rem;
@@ -106,7 +116,7 @@ article h3 {
     align-items: center;
 }
 .article-small{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -125,18 +135,57 @@ object-fit: contain;
     width: 50%;
 }
 .article-small>div {
-    width: 50%;
+    width: 48%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+#detArticle {
+    -webkit-box-shadow: 2px 2px 5px 2px var(--gray-hint); 
+    box-shadow: 2px 2px 5px 2px var(--gray-hint);
+    flex-direction: column;
+    justify-content: space-around;
+    min-height:85vh;
+}
+#detArticle>img {
+    width: 90%;
+}
+#AllPosts {
+    flex-direction: column;
+    justify-content: space-around;
+    min-height:85vh;
+}
+#AllPosts>article {
+    width:100%;
+    display: flex;
+    margin:20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#AllPosts>article>* {
+    min-width: 300px;
+    width:47%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#AllPosts>article>p.content {
+    height: 200px;
+    overflow: hidden;
 }
 #videos {
     min-height: 20vh;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-#videos>* {
+video {
+    width:90%;
+    margin: 0 auto;
+}
+#videos>article>video {
     margin:20px;
     width: 300px;
 }

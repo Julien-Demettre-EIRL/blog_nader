@@ -62,6 +62,7 @@ if($id!=0 && $bok && $bok2)
 
   $begin=0;
   $end=$size;
+  file_put_contents("./testRange.txt","Range : ".$_SERVER['HTTP_RANGE']."\n",FILE_APPEND);
   list($size_unit, $range_orig) = explode('=', $_SERVER['HTTP_RANGE'], 2);
   if ($size_unit == 'bytes')
   {
@@ -79,18 +80,18 @@ if($id!=0 && $bok && $bok2)
   //also check for invalid ranges.
   $end = (empty($seek_end)) ? ($size - 1) : min(abs(intval($seek_end)),($size - 1));
   $begin = (empty($seek_start) || $seek_end < abs(intval($seek_start))) ? 0 : max(abs(intval($seek_start)),0);
-  if($end>($begin+8192)) $end=$begin+8192;
+  //if($end>($begin+8192)) $end=$begin+8192;
 
   if($begin>0||$end<$size)
     header('HTTP/1.0 206 Partial Content');
   else
     header('HTTP/1.0 200 OK');
 
-  // header("Content-Type: video/mp4");
-  header("Content-Type: application/octet-stream");
-  header('Accept-Ranges: bytes');
-  header('Content-Length:'.($end-$begin));
-  header("Content-Range: bytes $begin-".($end+1)+"/$size");
+  //  header("Content-Type: video/mp4");
+  // //header("Content-Type: application/octet-stream");
+  // header('Accept-Ranges: bytes');
+  // header('Content-Length:'.($end-$begin));
+  // header("Content-Range: bytes $begin-".($end+1)+"/$size");
 
   $cur=$begin;
   fseek($fm,$begin,0);
@@ -99,7 +100,7 @@ if($id!=0 && $bok && $bok2)
 
   // var_dump($end);
 
-  print fread($fm,$end-$begin);
+  print fread($fm,$end-$begin-1);
   die();
 }
 else {

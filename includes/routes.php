@@ -22,14 +22,14 @@ $routes["postGetAjout"] = [ //page détail article
     "param"=>true
 ];
 
-$routes["postListeArticleRedac"] = [    //Liste des articles par rédacteur
-    "lien"=>"./index.php?controller=post&action=getArticleRedacteur&id=",
+$routes["postListeAllArticle"] = [    //Liste des articles par rédacteur
+    "lien"=>"./index.php?controller=post&action=getAllArticle",
     "controller"=>"post",
-    "action"=>"getArticleRedacteur",
+    "action"=>"getAllArticle",
     "fichierController"=>'./controller/posts.controller.php',
     "classController"=>"PostsController",
-    "funcController"=>"listeArticleRedacteur",
-    "param"=>true
+    "funcController"=>"listeAllArticle",
+    "param"=>false
 ];
 $routes["userCon"] = [  //Connexion utilisateur
     "lien"=>"./index.php?controller=user&action=connect",
@@ -151,6 +151,24 @@ $routes["dashboardVideoDel"] = [    //Tableau de bord utilisateurs
     "fichierController"=>'./controller/dashboard.controller.php',
     "classController"=>"DashboardController",
     "funcController"=>"delVideo",
+    "param"=>true
+];
+$routes["postAllVid"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=post&action=allVid",
+    "controller"=>"post",
+    "action"=>"allVid",
+    "fichierController"=>'./controller/posts.controller.php',
+    "classController"=>"PostsController",
+    "funcController"=>"allVid",
+    "param"=>false
+];
+$routes["postDetVid"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=post&action=detVid&id=",
+    "controller"=>"post",
+    "action"=>"detVid",
+    "fichierController"=>'./controller/posts.controller.php',
+    "classController"=>"PostsController",
+    "funcController"=>"detVid",
     "param"=>true
 ];
 $routes["postLectureVid"] = [    //Tableau de bord utilisateurs

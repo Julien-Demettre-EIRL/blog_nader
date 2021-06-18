@@ -29,6 +29,23 @@ class VideoModel
               $res = $sth->fetchAll();
               return $res;
     }
+    public function getOne($id)
+    {
+        $query = '
+		SELECT
+            id, 
+            video_path
+        FROM
+            video
+		WHERE
+			video.id = :id
+		LIMIT 1';
+        $sth = $this->bdd->prepare($query);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+        $sth->execute();
+        $video = $sth->fetch();
+        return $video;
+    }
     public function getThree()
     {
 

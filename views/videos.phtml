@@ -1,0 +1,10 @@
+<?php require dirname(__FILE__) . '/../views/head.phtml'?>
+<?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
+<section id="AllPosts">
+<?php foreach ($tabJwt as $jwt) {?>
+		<article onClick="window.location='<?=$routes["postDetVid"]['lien']?><?=$jwt?>'">
+        	<video controls src="stream.php?id=<?=$jwt?>" ></video>
+		</article>
+    <?php }?>
+</section>
+<?php require dirname(__FILE__) . '/../views/foot.phtml'?>
