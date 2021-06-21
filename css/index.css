@@ -189,6 +189,9 @@ video {
     margin:20px;
     width: 300px;
 }
+#share {
+    justify-content: center;
+}
 footer {
     min-height: 5vh;
     display: flex;

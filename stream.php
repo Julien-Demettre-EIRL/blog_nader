@@ -22,7 +22,7 @@ $bok = false;
 foreach ($headers as $header => $value) {
     if($header=='Range') $bok=true;
 }
-$bok=true;
+// $bok=true;
 $bok2 = false;
 $date = new DateTime();
 $key = "Nader_The_Best";
@@ -86,12 +86,15 @@ if($id!=0 && $bok && $bok2)
     header('HTTP/1.0 206 Partial Content');
   else
     header('HTTP/1.0 200 OK');
-
-  //  header("Content-Type: video/mp4");
+    header('X-Accel-Buffering: no');
+    header("Content-Type: video/mp4");
   // //header("Content-Type: application/octet-stream");
-  // header('Accept-Ranges: bytes');
-  // header('Content-Length:'.($end-$begin));
-  // header("Content-Range: bytes $begin-".($end+1)+"/$size");
+   header('Accept-Ranges: bytes');
+   header('Content-Length:'.($end-$begin));
+  //  header("Content-Range: bytes $begin-".($end+1)+"/$size");
+  @ob_end_flush();
+  @ob_implicit_flush(true);
+  @flush();
 
   $cur=$begin;
   fseek($fm,$begin,0);
@@ -99,8 +102,13 @@ if($id!=0 && $bok && $bok2)
   // var_dump($begin);
 
   // var_dump($end);
-
-  print fread($fm,$end-$begin-1);
+while(($end-$cur)>8192)
+{
+  print fread($fm,8192);
+  $cur+=8192;
+  @flush();
+}
+  print fread($fm,$end-$cur-1);
   die();
 }
 else {
