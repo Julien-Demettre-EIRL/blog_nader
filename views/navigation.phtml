@@ -3,7 +3,7 @@
 	<h1><a href="/" title="Service Presse Presidence de Djibouti"><img src="./img/logo_Service_Presse_Noir.jpg" alt="Service Presse Presidence de Djibouti"></a></h1>
 
 	<?php if (!array_key_exists('userId', $_SESSION)): ?>
-		<nav>
+		<nav class="desk">
 
 			<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
 			<a href="<?=$routes["postGetArticle"]['lien']?>" class="btn btn-light">Accueil</a>
@@ -12,6 +12,12 @@
 			<a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light">Connexion</button></a>
 			<!--<li><a href="<?=$routes["userAjout"]['lien']?>" button class="btn btn-light">Inscription</button></a></li>-->
 
+		</nav>
+		<nav class="mob">
+		<a href="<?=$routes["postGetArticle"]['lien']?>" class="btn btn-light"><i class="fas fa-home"></i></a>
+			<a href="<?=$routes["postListeAllArticle"]['lien']?>" class="btn btn-light"><i class="fas fa-newspaper"></i></a>
+			<a href="<?=$routes["postAllVid"]['lien']?>" class="btn btn-light"><i class="fas fa-film"></i></a>
+			<a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light"><i class="fas fa-user"></i></button></a>
 		</nav>
 	<?php else: ?>
 		<nav>
