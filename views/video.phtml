@@ -2,11 +2,17 @@
 <?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 <section id="detArticle">
 	<video 
-	class="video-js"
+	id="vid"
 	controls
-	preload="auto">
-	<source src="stream.php?id=<?=$jwt?>" type="video/mp4" />
+	>
+	<!-- controls -->
+	<!-- <source src="stream.php?id=<?=$jwt?>" type="video/mp4" /> -->
 	</video>
+	<script src="./js/testLect.js"></script>
+	<script>
+		let fich = "stream.php?id=<?=$jwt?>"
+		getPartVid(deb, taille, vidObj)
+	</script>
 </section>
 <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 <?php require dirname(__FILE__) . '/../views/foot.phtml'?>

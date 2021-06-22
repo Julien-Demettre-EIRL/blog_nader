@@ -94,7 +94,7 @@ if($id!=0 && $bok && $bok2)
   //  header('Keep-Alive: 100');
   //  if(($end-$begin)<1024)
   //  {
-   header('Content-Length:'.($end-$begin));
+   header('Content-Length:'.($end-$begin+1));
   //  }
   //  else {
   //   header('Content-Length:'.(1024));
