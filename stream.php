@@ -113,13 +113,13 @@ if($id!=0 && $bok && $bok2)
   // var_dump($begin);
 
   // var_dump($end);
-while(($end-$cur)>1024)
-{
-  print fread($fm,1024);
-  $cur+=1024;
-  @flush();
-}
-  print fread($fm,$end-$cur);
+// while(($end-$cur)>1024)
+// {
+//   print fread($fm,1024);
+//   $cur+=1024;
+//   @flush();
+// }
+  print fread($fm,$end-$cur+1);
   die();
 }
 else {

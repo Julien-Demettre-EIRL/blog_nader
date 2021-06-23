@@ -1,7 +1,7 @@
 // let fich = "http://localhost/blog_nader/video/Discours complet du president.mp4"
 
 let deb = 0
-let taille = 2048 * 1024 * 4
+let taille = 1024 * 1024
 let vidObj = new Blob()
 
 // getPartVid(deb, taille, vidObj)
@@ -15,7 +15,7 @@ function getPartVid(deb, taille, obj) {
         mode: 'cors',
         cache: 'default'
     };
-
+    console.log(deb, taille, obj, fich)
     fetch(fich, myInit).then((response) => {
         return response.blob();
     }).then((data) => {
@@ -37,12 +37,12 @@ function getPartVid(deb, taille, obj) {
 
         // obj += data
 
-    })
+    }).catch(err => console.error(err))
 }
 
 function lectureVid(obj) {
-    // let mavid = document.getElementById('vid')
-    // let objVid = URL.createObjectURL(obj)
-    // mavid.src = objVid
+    let mavid = document.getElementById('vid')
+    let objVid = URL.createObjectURL(obj)
+    mavid.src = objVid
     //mavid.play()
 }
