@@ -109,6 +109,7 @@ if($id!=0 && $bok && $bok2)
 
   $cur=$begin;
   fseek($fm,$begin,0);
+  if($end==$size) $end=$end-2;
   // var_dump($fm);
   // var_dump($begin);
 
