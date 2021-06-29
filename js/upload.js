@@ -1,6 +1,9 @@
 window.addEventListener('load', () => {
     let reader = {};
     let file = {};
+    let nomVid = document.querySelector('#nomVid')
+    let descVid = document.querySelector('#descVid')
+    let imgVid = {}
     let slice_size = 100 * 1024; // Taille de chaque segment
 
     function start_upload(event) {
@@ -8,6 +11,7 @@ window.addEventListener('load', () => {
 
         reader = new FileReader();
         file = document.querySelector('#file-input').files[0];
+        imgVid = document.querySelector('#imgVid').files[0];
 
         upload_file(0, 0);
     }
@@ -42,15 +46,24 @@ window.addEventListener('load', () => {
                 } else {
                     document.querySelector('#upload-progress').innerHTML = 'Upload terminé !';
                     //       location.reload()
+                    // let reader2 = new FileReader()
+                    // reader2.readAsBinaryString(file)
+                    // reader2.onload = (e) => {
                     let myData2 = new FormData()
                     myData2.append('videoName', file.name)
+                    myData2.append('titre', nomVid.value)
+                    myData2.append('description', descVid.value)
+                    // myData2.append('img-data', e.target.result)
+                    // myData2.append('img-nom', imgVid.name)
+                    myData2.append('monimg', imgVid)
                     fetch("./index.php?controller=dashboard&action=insVid", {
                         method: "POST",
                         body: myData2
                     }).then((data) => {
-                        // console.log(data.json())
+                        // console.log(data.text())
                         window.location = "./index.php?controller=dashboard&action=video"
                     })
+                    // }
                 }
             }).catch((err) => {
                 console.log(err)

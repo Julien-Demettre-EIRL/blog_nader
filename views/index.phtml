@@ -1,6 +1,7 @@
 <?php require dirname(__FILE__) . '/../views/head.phtml'?>
 <?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 <section id="carrousel">
+	<h1>Service de presse de la présidence de Djibouti</h1>
 	<div class="owl-carousel">
 		<?php foreach ($imgs as $img): ?>
 			<img src="./uploads/<?=htmlspecialchars($img['image_Path'])?>">
@@ -8,6 +9,8 @@
 	</div>
 </section>
 <section id="showcase">
+	<h2>Nos articles récents</h2>
+	<div class="flex">
 	<?php foreach ($postsGauche as $post): ?>
 		<article onClick="window.location='<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>'">
 			<?php if (!empty($post['imageFileName'])){ ?>
@@ -17,7 +20,7 @@
 				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
 			<?php } ?>
 			<h3><?=htmlspecialchars($post['title'])?></h3>
-			<p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p>
+			<!-- <p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p> -->
 			<p class="text-hint">le <?=$post['publicationDate']?>
 				<i class="fas fa-star mx-1"></i>
 			</p>
@@ -33,7 +36,7 @@
 				<?php } ?>
 				<div>
 					<h3><?=htmlspecialchars($post['title'])?></h3><
-					<p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p>
+					<!-- <p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p> -->
 					<p class="text-hint">le <?=$post['publicationDate']?>
 						<i class="fas fa-star mx-1"></i>
 					</p>
@@ -49,19 +52,29 @@
 				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
 			<?php } ?>
 			<h3><?=htmlspecialchars($post['title'])?></h3>
-			<p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p>
+			<!-- <p>Rédigé par <?=htmlspecialchars($post['writerUsername'])?></p> -->
 			<p class="text-hint">le <?=$post['publicationDate']?>
 				<i class="fas fa-star mx-1"></i>
 			</p>
 		</article>
 	<?php endforeach?>
+	</div>
 </section>
 <section id="videos">
-	<?php foreach ($tabJwt as $jwt) {?>
-		<article>
-        	<video controls src="stream.php?id=<?=$jwt?>" ></video>
+	<h2>Nos vidéos récentes</h2>
+	<div class="flex">
+	<?php foreach ($vids as $vid) {?>
+		<article onClick="window.location='<?=$routes["postDetVid"]['lien']?><?=$vid["jwt"]?>'">
+		<?php if (!empty($vid['imgvideo_path'])){ ?>
+			<img src="./uploads/<?=htmlspecialchars($vid["imgvideo_path"])?>">
+		<?php } else { ?>
+				<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
+			<?php } ?>
+		<h3><?=htmlspecialchars($vid["titre"])?></h3>
+		<!-- <video controls src="stream.php?id=<?=$jwt?>" ></video> -->
 		</article>
     <?php }?>
+	</div>
 </section>
 <section id="share">
 	<div class="sharethis-inline-share-buttons"></div>

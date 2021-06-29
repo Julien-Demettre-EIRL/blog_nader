@@ -1,11 +1,11 @@
 // let fich = "http://localhost/blog_nader/video/Discours complet du president.mp4"
 let deb = 0
-let taille = 1024 * 1024
+let taille = 1024 * 1024 * 8
 let vidObj = new Blob()
 let pauseAuto = false
 // let mimeCodec = 'video/mp4;';
 // let sourceBuffer = vidObj.addSourceBuffer(mimeCodec);
-let dataCpt = -30
+let dataCpt = 0
 let largeur = parseInt(window.screen.width * 0.8)
 
 // let largeur = (document.getElementById('detArticle').clientWidth * 0.8)
@@ -14,13 +14,14 @@ let largeur = parseInt(window.screen.width * 0.8)
 
 let intDraw = 0
 let laVid = document.createElement('video')
+// laVid.addEventListener('error', function (err) {
+//     // This craps out in Safari 6
+//     let errDoc = document.createElement('div')
+//     errDoc.innerHTML = JSON.stringify(err, ["message", "arguments", "type", "name"])
+//     document.getElementById("detArticle").appendChild(errDoc)
+// });
 
-laVid.width = "" + largeur
-laVid.height = "" + (largeur * 9 / 16)
-laVid.muted = true
-laVid.style.display = "none"
 
-// document.body.append(laVid)
 
 let cnv = document.getElementById("vid");
 cnv.width = "" + largeur
@@ -33,6 +34,15 @@ window.addEventListener('load', () => {
     largeur = (document.getElementById('detArticle').clientWidth * 0.9)
     cnv.width = "" + largeur
     cnv.height = "" + parseInt(largeur * 9 / 16)
+
+    laVid.width = "" + largeur
+    laVid.height = "" + (largeur * 9 / 16)
+    laVid.muted = true
+    laVid.playsinline = true
+    laVid.controls = true
+    laVid.style.display = "none"
+
+    document.body.append(laVid)
 
     ctx.drawImage(document.getElementById("imgLogo"), 0, 0, largeur, (largeur * 9 / 16))
 
@@ -194,7 +204,7 @@ function getPartVid(deb, taille, obj) {
                 setTimeout(() => {
                     if (data.size == (taille + 1)) {
                         getPartVid(deb, taille, obj)
-                        if (dataCpt > 10) {
+                        if (dataCpt > 5) {
                             lectureVid(obj)
                             dataCpt = 0
                         }
@@ -227,8 +237,18 @@ function lectureVid(obj) {
         clearInterval(intDraw)
         laVid.pause()
     }
+    // let objVid = URL.createObjectURL(new File([obj], 'video'))
     let objVid = URL.createObjectURL(obj)
     laVid.src = objVid
+    // let reader = new FileReader()
+    // reader.readAsDataURL(obj)
+    // reader.onload = () => {
+    // laVid.src = reader.result
+    // laVid.innerHTML = ""
+    // let elemSource = document.createElement("source")
+    // elemSource.type = "video/mp4"
+    // elemSource.src = reader.result
+    // laVid.appendChild(elemSource)
     if (enCours != 0)
         laVid.currentTime = enCours
     if (!bPause) {
@@ -236,4 +256,6 @@ function lectureVid(obj) {
         // affImg()
         intDraw = setInterval(affImg, 16)
     }
+    // }
+
 }

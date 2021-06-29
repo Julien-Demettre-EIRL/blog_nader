@@ -21,8 +21,7 @@ class VideoModel
 
         $query = "
 	      SELECT
-		    id, 
-            video_path
+		    *
 	      FROM
 		      video";
               $sth = $this->bdd->query($query);
@@ -33,8 +32,7 @@ class VideoModel
     {
         $query = '
 		SELECT
-            id, 
-            video_path
+            *
         FROM
             video
 		WHERE
@@ -51,29 +49,32 @@ class VideoModel
 
         $query = "
 	      SELECT
-		    id, 
-            video_path
+		    *
 	      FROM
 		      video
+              ORDER BY id DESC
               LIMIT 3";
               $sth = $this->bdd->query($query);
               $res = $sth->fetchAll();
               return $res;
     }
 
-    public function add($path)
+    public function add($path,$path2,$titre,$desc)
     {
 
         $url = "
 		  INSERT INTO
 	        video
-	         (video_path)
+	         (video_path, imgvideo_path, titre, description)
 	      VALUES
-	         (:vid)";
+	         (:vid, :img, :titre, :desc)";
 
         //On prepare la requete
         $query = $this->bdd->prepare($url);
         $query->bindValue(":vid", $path);
+        $query->bindValue(":img", $path2);
+        $query->bindValue(":titre", $titre);
+        $query->bindValue(":desc", $desc);
         //On exécute la requete
         $url = $query->execute();
     }

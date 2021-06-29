@@ -14,6 +14,10 @@ class PostsController
             $postModel = new PostsModel();
         
             $post = $postModel->getOne($id);
+
+            $title = $post['title'];
+            $description = $post['description'];
+            $og_img = "./uploads/".$post['imageFileName'];
         
             require dirname(__FILE__) . '/../views/post.phtml';
         
@@ -53,7 +57,7 @@ class PostsController
         $tabJwt = [];
         foreach($vids as $key=>$vid)
         {
-            $key = "Nader_The_Best";
+            $key2 = "Nader_The_Best";
             $date = new DateTime();
             $date->modify('+1 hour');
             $payload = array(
@@ -61,10 +65,16 @@ class PostsController
                 "id"=>$vid['id']
             );
     
-            $jwt = JWT::encode($payload, $key);
-            array_push($tabJwt,urlencode($jwt));
+            $vids[$key]["jwt"]= JWT::encode($payload, $key2);
+            // $jwt = JWT::encode($payload, $key);
+            // array_push($tabJwt,urlencode($jwt));
             //$tabJwt[$key]=urlencode($jwt);
         }
+
+        $title = "Service de presse de la présidence de Djibouti";
+        $description = "Sur le site internet du service de presse de la présidence de Djibouti vous retrouverez les communiqués de presse de la présidence ainsi que des vidéos";
+        $og_img = "./img/logo_Service_Presse.jpg";
+
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/index.phtml';
         }
@@ -77,6 +87,10 @@ class PostsController
         $postModel = new PostsModel();
         
         $posts = $postModel->getAll();
+
+        $title = "Communiqué de presse de la présidence de Djibouti";
+        $description = "Vous trouverez ici l'ensemble des communiqués de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
 
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/posts.phtml';
@@ -182,7 +196,7 @@ class PostsController
         $tabJwt = [];
         foreach($vids as $key=>$vid)
         {
-            $key = "Nader_The_Best";
+            $key2 = "Nader_The_Best";
             $date = new DateTime();
             $date->modify('+1 hour');
             $payload = array(
@@ -190,10 +204,13 @@ class PostsController
                 "id"=>$vid['id']
             );
     
-            $jwt = JWT::encode($payload, $key);
-            array_push($tabJwt,urlencode($jwt));
+            $vids[$key]["jwt"] = JWT::encode($payload, $key2);
+            // array_push($tabJwt,urlencode($jwt));
             //$tabJwt[$key]=urlencode($jwt);
         }
+        $title = "Vidéos de presse de la présidence de Djibouti";
+        $description = "Vous trouverez ici l'ensemble des vidéo de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
 
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/videos.phtml';
@@ -226,6 +243,10 @@ class PostsController
     
         $jwt = JWT::encode($payload, $key);
         
+        $title = $vid["titre"];
+        $description = $vid["description"];
+        $og_img = "./uploads/".$vid["imgvideo_path"];
+
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/video.phtml';
     }

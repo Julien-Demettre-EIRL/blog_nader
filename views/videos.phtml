@@ -1,9 +1,19 @@
 <?php require dirname(__FILE__) . '/../views/head.phtml'?>
 <?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 <section id="AllPosts">
-<?php foreach ($tabJwt as $jwt) {?>
-		<article onClick="window.location='<?=$routes["postDetVid"]['lien']?><?=$jwt?>'">
-        	<video controls src="stream.php?id=<?=$jwt?>" ></video>
+<h1>Toutes nos videos</h1>
+<?php foreach ($vids as $vid) {?>
+		<article onClick="window.location='<?=$routes["postDetVid"]['lien']?><?=$vid["jwt"]?>'">
+		<?php if (!empty($vid['imgvideo_path'])){ ?>
+			<img src="./uploads/<?=htmlspecialchars($vid["imgvideo_path"])?>">
+		<?php } else { ?>
+			<img src="./img/logo_Service_Presse.jpg" alt="Service Presse Presidence de Djibouti">
+			<?php } ?>
+			<div>
+		<h3><?=htmlspecialchars($vid["titre"])?></h3>
+		<p><?=htmlspecialchars($vid["description"])?></p>
+        	<!-- <video controls src="stream.php?id=<?=$jwt?>" ></video> -->
+		</div>
 		</article>
     <?php }?>
 </section>

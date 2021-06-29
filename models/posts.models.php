@@ -27,6 +27,7 @@ class PostsModel
             posts.content,
             posts.imageFileName,
             posts.position,
+            posts.description,
             DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
             writers.username AS writerUsername,
             posts.writerId
@@ -52,6 +53,7 @@ class PostsModel
 			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
 			posts.writerId,
 			posts.position,
+            posts.description,
 			writers.username AS writerUsername,
             posts.writerId
 		FROM
@@ -83,6 +85,7 @@ class PostsModel
 			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
 			posts.writerId,
 			posts.position,
+            posts.description,
 			writers.username AS writerUsername,
             posts.writerId
 		FROM
@@ -112,6 +115,7 @@ class PostsModel
 			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
 			posts.writerId,
 			posts.position,
+            posts.description,
 			writers.username AS writerUsername,
             posts.writerId
 		FROM
@@ -138,6 +142,7 @@ class PostsModel
 			posts.title,
 			posts.content,
 			posts.imageFileName,
+            posts.description,
 			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
 			writers.username AS writerUsername,
             posts.writerId
@@ -159,17 +164,18 @@ class PostsModel
         return $posts;
     }
 
-    public function add($title, $content, $imageFileName, $userId, $position)
+    public function add($title, $content, $imageFileName, $userId, $position,$desc)
     {
         $query = '
         INSERT INTO
             posts
-            (title, content, imageFileName, writerId, position)
+            (title, content, imageFileName, writerId, position, description)
         VALUES
-            (:title, :content, :imageFileName, :writerId, :position)';
+            (:title, :content, :imageFileName, :writerId, :position, :desc)';
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':title', ($title), PDO::PARAM_STR);
         $sth->bindValue(':content', ($content), PDO::PARAM_STR);
+        $sth->bindValue(':desc', ($desc), PDO::PARAM_STR);
 
         if (isset($imageFileName)) {
             $sth->bindValue(':imageFileName', $imageFileName, PDO::PARAM_STR);
@@ -190,6 +196,7 @@ class PostsModel
 			posts.content,
             posts.position,
 			posts.imageFileName,
+            posts.description,
 			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
 			writers.username AS writerUsername,
             posts.writerId
@@ -209,7 +216,7 @@ class PostsModel
         return $posts;
     }
 
-    public function update($title, $content, $imageFileName, $pos, $userId, $id)
+    public function update($title, $content, $imageFileName, $pos, $userId, $id, $desc)
     {
         if($imageFileName!="")
         {
@@ -217,7 +224,7 @@ class PostsModel
 		  UPDATE
 				posts
 			SET
-				title = :title, content= :content, imageFileName = :imageFileName, position = :pos, writerId =:writerId
+				title = :title, description= :desc, content= :content, imageFileName = :imageFileName, position = :pos, writerId =:writerId
 
 			WHERE id=:id
 
@@ -227,7 +234,7 @@ class PostsModel
             UPDATE
                   posts
               SET
-                  title = :title, content= :content, position = :pos, writerId =:writerId
+                  title = :title,  description= :desc, content= :content, position = :pos, writerId =:writerId
   
               WHERE id=:id
   
@@ -236,6 +243,7 @@ class PostsModel
         $sth = $this->bdd->prepare($query);
         $sth->bindValue(':title', trim($title), PDO::PARAM_STR);
         $sth->bindValue(':content', trim($content), PDO::PARAM_STR);
+        $sth->bindValue(':desc', trim($desc), PDO::PARAM_STR);
         $sth->bindValue(':id', trim($id), PDO::PARAM_INT);
         $sth->bindValue(':pos', trim($pos), PDO::PARAM_STR);
         if ($imageFileName!="") {

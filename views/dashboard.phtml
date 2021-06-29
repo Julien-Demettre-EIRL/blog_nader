@@ -11,6 +11,7 @@
 			<tr>
 			<th scope="col">id</th>
 			<th scope="col">Titre</th>
+			<th scope="col">Description</th>
 			<th scope="col">Contenu</th>
 			<th scope="col">Nom Image</th>
 			<th scope="col">Position</th>
@@ -26,6 +27,7 @@
 					<?= $post['id'] ?>
 				</th>
 				<td><?= $post['title'] ?></td>
+				<td><?= $post['description'] ?></td>
 				<td><?= $post['content'] ?></td>
 				<td><?= $post['imageFileName'] ?></td>
 				<td><?= $post['position'] ?></td>
@@ -85,7 +87,11 @@
 						<input type="text" name="title" placeholder="Titre" required class="form-control" value="<?= $postEC["title"]?>">
 						<!-- <p class="text-error"></p> -->
 					</div>
-
+					<div >
+						<label for="description" class="form-label">Titre</label>
+						<input type="text" name="description" placeholder="Description" required class="form-control" value="<?= $postEC["description"]?>">
+						<!-- <p class="text-error"></p> -->
+					</div>
 					<div >
 						<label for="image" class="form-label">Image</label>
 						<input type="hidden" name="MAX_FILE_SIZE" value="3000000">

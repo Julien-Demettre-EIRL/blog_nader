@@ -18,6 +18,7 @@ class DashboardController
         $postEC["id"]="";
         $postEC["title"]="";
         $postEC["content"]="";
+        $postEC["description"]="";
        /*
         $msg = '';
         if (isset($_POST['upload'])) {
@@ -86,7 +87,7 @@ class DashboardController
             $imageFileName = $this->moveImg('image');
             if($imageFileName!==false)
             {
-                $postModel->update($_POST['title'], $_POST['content'], $imageFileName, $_POST['position'], (int) $_SESSION['userId'], (int) $_POST['id']);
+                $postModel->update($_POST['title'], $_POST['content'], $imageFileName, $_POST['position'], (int) $_SESSION['userId'], (int) $_POST['id'], $_POST['description']);
             //    Redirection vers le tableau de bord
             header('Location: ' . $routes["dashboard"]["lien"]);
             exit;
@@ -119,7 +120,7 @@ class DashboardController
             if($imageFileName!==false)
             {
 
-            $postModel->add($_POST['title'], $_POST['content'], $imageFileName, $_SESSION['userId'], $_POST['position']);
+            $postModel->add($_POST['title'], $_POST['content'], $imageFileName, $_SESSION['userId'], $_POST['position'],$_POST['description']);
 
             //    Redirection vers le tableau de bord
          //       echo'ajout Ok !';
@@ -305,7 +306,14 @@ if ($fpLog) {
         require_once dirname(__FILE__) . '/../models/video.models.php';
         $videoModel = new VideoModel();
        
-        $videoModel->add($_POST['videoName']);
+        $imageFileName = $this->moveImg('monimg');
+        // $file_path = dirname(__FILE__) . '/../videoImg/' .$_POST['img-nom'];
+        // $file_data = $this->decode_chunk($_POST['img-data']);
+        // $fpLog = @fopen($file_path, 'w+');
+        // @fwrite($fpLog, $file_data);
+        // @fclose($fpLog);
+       
+        $videoModel->add($_POST['videoName'],$imageFileName,$_POST['titre'],$_POST['description']);
 
         //    Redirection vers le tableau de bord
             echo json_encode($_POST);

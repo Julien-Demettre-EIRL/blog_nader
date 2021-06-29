@@ -2,7 +2,6 @@
 
 	<h1><a href="/" title="Service Presse Presidence de Djibouti"><img id="imgLogo" src="./img/logo_Service_Presse_Noir.jpg" alt="Service Presse Presidence de Djibouti"></a></h1>
 
-	<?php if (!array_key_exists('userId', $_SESSION)): ?>
 		<nav class="desk">
 
 			<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
@@ -19,14 +18,13 @@
 			<a href="<?=$routes["postAllVid"]['lien']?>" class="btn btn-light"><i class="fas fa-film"></i></a>
 			<a href="<?=$routes["userCon"]['lien']?>" button class="btn btn-light"><i class="fas fa-user"></i></button></a>
 		</nav>
-	<?php else: ?>
+	<?php if (array_key_exists('userId', $_SESSION)): ?>
 		<nav>
-			<a href="<?=$routes["postGetArticle"]['lien']?>">Accueil</a>
-			<a href="<?=$routes["dashboard"]['lien']?>">Tableau de bord</a>
-			<a href="<?=$routes["dashboardCarrousel"]['lien']?>">Gestion du carrousel</a>
-			<a href="<?=$routes["dashboardVideo"]['lien']?>">Gestion des vidéos</a>
-			<a href="<?=$routes["dashboardUser"]['lien']?>">Gestion des users</a>
-			<a href="<?=$routes["userDeco"]['lien']?>">Déconnexion</a>
+			<a href="<?=$routes["dashboard"]['lien']?>" class="btn btn-light">Articles</a>
+			<a href="<?=$routes["dashboardCarrousel"]['lien']?>" class="btn btn-light">Carrousel</a>
+			<a href="<?=$routes["dashboardVideo"]['lien']?>" class="btn btn-light">Vidéos</a>
+			<a href="<?=$routes["dashboardUser"]['lien']?>" class="btn btn-light">Utilisateurs</a>
+			<a href="<?=$routes["userDeco"]['lien']?>" class="btn btn-light">Déconnexion</a>
 		</nav>
 	<?php endif;?>
 

@@ -14,7 +14,15 @@
 	<link rel="stylesheet" href="./owlcarousel/assets/owl.theme.default.min.css">
 	<script src="https://cdn.tiny.cloud/1/31eahwute8bfy1tloq8yw09cubvceug6hjvdub6j4k4a950r/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=60cbc40d89d72400193eccd5&product=inline-share-buttons' async='async'></script>
-	<title>Blog : Tous les articles</title>
+	<title><?= $title ?></title>
+	<meta name="description" content="<?= $vid["description"] ?>">
+	<meta property="og:title" content="<?= $title ?>"/>
+	<meta property="og:type" content="website"/>
+	<?php $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$img_og = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/$og_img"; ?>
+	<meta property="og:url" content="<?= $actual_link ?>"/>
+	<meta property="og:image" content="<?= $img_og ?>"/>
+	<meta property="og:description" content="<?= $description ?>"/>
 	<!-- <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" /> -->
 </head>
 

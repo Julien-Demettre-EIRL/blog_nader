@@ -1,6 +1,7 @@
 <?php require dirname(__FILE__) . '/../views/head.phtml'?>
 <?php require dirname(__FILE__) . '/../views/navigation.phtml'?>
 <section id="AllPosts">
+<h1>Tous nos articles</h1>
 <?php foreach ($posts as $post) { ?>
 	<article onClick="window.location='<?=$routes["postGetAjout"]['lien']?><?=intval($post['id'])?>'">
 			<?php if (!empty($post['imageFileName'])) { ?>
@@ -13,7 +14,7 @@
 				<h3><?= htmlspecialchars($post['title']) ?></h3>
 				<p class="content"><?= $post['content'] ?></p>
 				
-				<p>Rédigé par <?= htmlspecialchars($post['writerUsername']) ?></p>
+				<!-- <p>Rédigé par <?= htmlspecialchars($post['writerUsername']) ?></p> -->
 				<p class="text-hint">le <?= $post['publicationDate'] ?></p>
 			</div>
 	</article>

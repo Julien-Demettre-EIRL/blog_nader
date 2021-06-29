@@ -65,6 +65,9 @@ header>nav>* {
 section{
     width:90%;
     margin:20px auto;
+    
+}
+section>.flex{
     display: flex;
     align-items: center;
 }
@@ -72,16 +75,22 @@ section{
     min-height: 20vh;
 }
 #carrousel img {
-    max-height: 400px;
+    max-height: 600px;
     object-fit: cover;
 }
-#showcase {
+#showcase>.flex {
     min-height: 45vh;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 }
-#showcase>* {
+h1, h2 {
+    margin:20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+#showcase>.flex>* {
     min-width: 300px;
     max-width: 30%;
     height: 600px;
@@ -105,7 +114,7 @@ article h3 {
     font-size: 1.6rem;
     font-weight: bold;
 }
-#showcase>article img{
+#showcase>.flex>article img{
     width:100%;
     height: 250px;
     object-fit: contain;
@@ -152,7 +161,16 @@ object-fit: contain;
 }
 #detArticle>img {
     width: 90%;
+    max-height: 500px;
+    object-fit: contain;
 }
+#detVideo {
+    -webkit-box-shadow: 2px 2px 5px 2px var(--gray-hint); 
+    box-shadow: 2px 2px 5px 2px var(--gray-hint);
+    flex-direction: column;
+    
+}
+
 #AllPosts {
     flex-direction: column;
     justify-content: space-around;
@@ -161,25 +179,34 @@ object-fit: contain;
 #AllPosts>article {
     width:100%;
     display: flex;
+    min-height: 600px;
     margin:20px;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 #AllPosts>article>* {
     min-width: 300px;
     width:47%;
-    height: 600px;
+   max-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    
+}
+#AllPosts>article>img {
     object-fit: contain;
+}
+#AllPosts>article>div {
+    overflow: hidden;
+    justify-content: flex-start;
 }
 #AllPosts>article>p.content {
     height: 200px;
     overflow: hidden;
 }
-#videos {
+#videos>.flex {
     min-height: 20vh;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -188,7 +215,13 @@ video {
     width:90%;
     margin: 0 auto;
 }
-#videos>article>video {
+#videos>.flex>article {
+    display:flex;
+    flex-direction: column;
+    justify-self: space-around;
+    align-items: center;
+}
+#videos>.flex>article>img {
     margin:20px;
     width: 300px;
 }
@@ -220,6 +253,9 @@ nav.mob {
     display: none;
 }
 @media screen and (max-width:700px) {
+    #carrousel img {
+        max-height: 400px;
+    }
     footer, section, header, header>nav {
       flex-direction: column;
     }
@@ -249,7 +285,10 @@ nav.mob {
         height:80px;
         font-size: 2rem;
         font-weight: 900;
-        background-color: var(--primary);
-        color: var(--secondary);
+        /* background-color: var(--primary);
+        color: var(--secondary); */
+        color: var(--primary);
+        background-color: white;
+        border: solid var(--primary) 1px;
     }
   }
