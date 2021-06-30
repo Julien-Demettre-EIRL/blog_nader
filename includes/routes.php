@@ -190,6 +190,25 @@ $routes["dashboardUser"] = [    //Tableau de bord utilisateurs
     "funcController"=>"afficheDashUser",
     "param"=>false
 ];
+
+$routes["dashboardUserdebloque"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=debloqueUser&id=",
+    "controller"=>"dashboard",
+    "action"=>"debloqueUser",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"debloqueUser",
+    "param"=>true
+];
+$routes["dashboardUserDel"] = [    //Tableau de bord utilisateurs
+    "lien"=>"./index.php?controller=dashboard&action=userDel&id=",
+    "controller"=>"dashboard",
+    "action"=>"userDel",
+    "fichierController"=>'./controller/dashboard.controller.php',
+    "classController"=>"DashboardController",
+    "funcController"=>"delDashUser",
+    "param"=>true
+];
 $routes["userDeco"] = [ //Deconnexion utilisateur
     "lien"=>"./index.php?controller=user&action=deconnect",
     "controller"=>"user",

@@ -61,7 +61,8 @@ class WritersModel
         SELECT
             id,
             username,
-            hashedPassword
+            hashedPassword,
+            nbConnect
         FROM
             writers
         WHERE
@@ -72,5 +73,64 @@ class WritersModel
         $writer = $sth->fetch();
 
         return $writer;
+    }
+    public function debloqueUser($id)
+    {
+        $query = '
+            UPDATE writers SET
+                nbConnect = :con
+            WHERE
+                id = :id';
+            $sth = $this->bdd->prepare($query);
+            $sth->bindValue(':id', $id, PDO::PARAM_INT);
+            $sth->bindValue(':con', 0, PDO::PARAM_INT);
+            $sth->execute();
+    }
+    public function connect($email,$pass){
+        $writer = $this->getByName($email);
+        if ($writer !== false and password_verify(trim($pass), $writer['hashedPassword']) and ($writer['nbConnect']<3)) {
+            $query = '
+            UPDATE writers SET
+                nbConnect = :con
+            WHERE
+                username = :username';
+            $sth = $this->bdd->prepare($query);
+            $sth->bindValue(':username', trim($email), PDO::PARAM_STR);
+            $sth->bindValue(':con', 0, PDO::PARAM_INT);
+            $sth->execute();
+            return 1;
+        } else {
+            if($writer['nbConnect']>=3)
+            {
+                return -2;
+            }
+            if($writer!== false)
+            {
+                $query = '
+                UPDATE writers SET
+                    nbConnect = :con
+                WHERE
+                    username = :username';
+                $sth = $this->bdd->prepare($query);
+                $sth->bindValue(':username', trim($email), PDO::PARAM_STR);
+                $sth->bindValue(':con', ($writer['nbConnect']+1), PDO::PARAM_INT);
+                $sth->execute();
+                return -1;
+            }
+            return -3;
+        }
+    }
+    public function delete($id)
+    {
+
+        $url = "
+		  DELETE FROM writers
+          WHERE id=:id";
+
+        //On prepare la requete
+        $query = $this->bdd->prepare($url);
+        $query->bindValue(":id", $id,PDO::PARAM_INT);
+        //On exécute la requete
+        $url = $query->execute();
     }
 }

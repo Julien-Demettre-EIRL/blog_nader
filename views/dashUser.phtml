@@ -11,6 +11,8 @@
 			<tr>
 			<th scope="col">id</th>
 			<th scope="col">Utilisateur</th>
+			<th scope="col">bloqué</th>
+			nbConnect
 			<th scope="col">Option</th>
 			</tr>
 		</thead>
@@ -19,7 +21,11 @@
 			<tr>
 			<th scope="row"><?= $usr['id'] ?></td>
 			<td><?= $usr['username'] ?></td>
-			<td>option</td>
+			<td><?= ($usr['nbConnect']>=3)?"oui":"non" ?></td>
+			<td>	
+			<a href="<?= $routes["dashboardUserdebloque"]["lien"] ?><?= $usr['id'] ?>">débloquer</a>	
+			<a href="<?= $routes["dashboardUserDel"]["lien"] ?><?= $usr['id'] ?>">Supprimer</a>
+		</td>
 			</tr>
 		<?php } ?>
 		</tbody>

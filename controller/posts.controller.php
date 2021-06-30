@@ -116,14 +116,21 @@ class PostsController
         if (!empty($_POST)) {
             require_once dirname(__FILE__) . '/../models/writers.models.php';
             $writerModel = new WritersModel();
-            $writer = $writerModel->getByName($_POST['email']);
-            if ($writer !== false and password_verify(trim($_POST['password']), $writer['hashedPassword'])) {
+            $bok = $writerModel->connect($_POST['email'],$_POST['password']);
+            if ($bok === 1) {
                 $_SESSION['userId'] = intval($writer['id']);
                 header('Location: '.$routes["dashboard"]["lien"]);
                 exit;
             } else {
+                if ($bok === -2){
+                    echo'Le compte utilisateur est bloqué, contactez un administrateur du site pour vous debloquer';
+                    exit;
+                }
+                else {
                 header('Location: '.$routes["userCon"]["lien"]);
                 exit;
+            }
+
             }
         }
         require dirname(__FILE__) . '/../views/sign-in.phtml';

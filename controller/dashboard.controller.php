@@ -35,6 +35,9 @@ class DashboardController
                 $msg = 'Echec du chargement de l"image!';
             }
         }*/
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
 
         require dirname(__FILE__) . '/../views/dashboard.phtml';
     }
@@ -61,6 +64,8 @@ class DashboardController
 
         //    Suppression de l'article
         $postModel->delete((int) $id);
+
+        
 
         //    Redirection vers le tableau de bord
         header('Location: ' . $routes["dashboard"]["lien"]);
@@ -95,6 +100,10 @@ class DashboardController
             
         }
         else {
+            $title = "Back Office du service de presse de la présidence de Djibouti";
+            $description = "Back Office du service de presse de la présidence de Djibouti";
+            $og_img = "./img/logo_Service_Presse.jpg";
+
             //    Inclusion du HTML
             require dirname(__FILE__) . '/../views/dashboard.phtml';
         }
@@ -130,6 +139,11 @@ class DashboardController
             
         }
         else {
+            $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
+
+
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/dashboard.phtml';
         }
@@ -149,6 +163,10 @@ class DashboardController
         $carrouselModel = new CarrouselModel();
 
         $imgs = $carrouselModel->getAll();
+
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
 
         require dirname(__FILE__) . '/../views/dashCarrousel.phtml';
     }
@@ -182,6 +200,10 @@ class DashboardController
         }
         else {
         //    Inclusion du HTML
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
+
         require dirname(__FILE__) . '/../views/dashboard.phtml';
         }
 
@@ -229,6 +251,11 @@ class DashboardController
         $videoModel = new VideoModel();
        
         $vids = $videoModel->getAll();
+
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
+
 
         require dirname(__FILE__) . '/../views/dashVideo.phtml';
     }
@@ -348,7 +375,45 @@ if ($fpLog) {
         header('Location: ' . $routes["dashboardVideo"]["lien"]);
         exit;
     }
-    
+    public function debloqueUser($id){
+        global $routes;
+        //    Si l'utilisateur n'est pas identifié
+        if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: ' . $routes["userCon"]["lien"]);
+            exit;
+        }
+
+        require_once dirname(__FILE__) . '/../models/writers.models.php';
+        $writersModel = new WritersModel();
+
+              //    Suppression de l'article
+        $writersModel->debloqueUser((int) $id);
+
+        //    Redirection vers le tableau de bord
+        header('Location: ' . $routes["dashboardUser"]["lien"]);
+        exit;
+    }
+    public function delDashUser($id)
+    {
+        global $routes;
+        //    Si l'utilisateur n'est pas identifié
+        if (!array_key_exists('userId', $_SESSION)) {
+            //    Redirection vers la page d'identification
+            header('Location: ' . $routes["userCon"]["lien"]);
+            exit;
+        }
+
+        require_once dirname(__FILE__) . '/../models/writers.models.php';
+        $writersModel = new WritersModel();
+
+              //    Suppression de l'article
+        $$writersModel->delete((int) $id);
+
+        //    Redirection vers le tableau de bord
+        header('Location: ' . $routes["dashboardUser"]["lien"]);
+        exit;
+    }
 
     public function afficheDashUser()
     {
@@ -362,6 +427,11 @@ if ($fpLog) {
         require_once dirname(__FILE__) . '/../models/writers.models.php';
         $writerModel = new WritersModel();
         $usrs = $writerModel->getAll();
+
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
+
 
         require dirname(__FILE__) . '/../views/dashUser.phtml';
     }
@@ -385,6 +455,10 @@ if ($fpLog) {
             header('Location: '.$routes["dashboardUser"]["lien"]);
             exit;
         }
+
+        $title = "Back Office du service de presse de la présidence de Djibouti";
+        $description = "Back Office du service de presse de la présidence de Djibouti";
+        $og_img = "./img/logo_Service_Presse.jpg";
 
         //    Inclusion du HTML
         require dirname(__FILE__) . '/../views/sign-up.phtml';
